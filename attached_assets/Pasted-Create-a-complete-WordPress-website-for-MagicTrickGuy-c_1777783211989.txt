@@ -1,0 +1,88 @@
+Create a complete WordPress website for MagicTrickGuy.com.
+
+Goal:
+Build a premium booking website for Stefan Oswald, a magician, speaker, emcee, and mastermind host. The site should help him get booked for corporate events, trade shows, private events, keynote-style magic shows, and Magic Mansion masterminds.
+
+Reference style:
+Use https://carolineravn.com/en/ as inspiration for structure and feel, not as a copy. It has a strong hero section, clear booking CTA, service cards, social proof, testimonials, brand credibility, video/photo sections, and event-specific booking paths. Use a similar high-end entertainment website flow. Source reference:  [oai_citation:0‡Caroline Ravn](https://carolineravn.com/en/)
+
+Design direction:
+Modern, polished, premium, clean, magical but not cheesy.
+Dark luxury theme with gold, white, and deep blue or black.
+Mobile-first.
+Fast loading.
+Easy for Stefan to update later in WordPress.
+Use placeholder images and videos for now, clearly labeled.
+
+Required pages:
+Home
+Corporate Magic
+Trade Show Magic
+Keynote Magic Show
+Masterminds
+About Stefan
+Testimonials
+Videos
+Contact / Book Now
+
+Homepage sections:
+1. Hero
+Headline: Magic That Makes Your Event Impossible To Forget
+Subheadline: Stefan Oswald blends world-class sleight of hand, comedy, storytelling, and audience interaction to create moments your guests will talk about long after the event ends.
+Buttons: Book Stefan, Watch Video
+
+2. Trust / credibility bar
+Placeholder for logos, reviews, and “1,000+ five-star reviews”
+Mention: corporate events, trade shows, private events, theaters, masterminds
+
+3. Services cards
+Corporate Events
+Trade Shows
+Keynote Magic
+Masterminds
+Private Events
+Emcee / Host
+
+4. Video section
+Large video placeholder with CTA
+
+5. Why book Stefan
+Funny, professional, interactive, easy to work with, meaningful message, strong audience connection
+
+6. Masterminds section
+Promote Magic Mansion mastermind events as premium 3-day experiences for magicians, creators, entrepreneurs, and high-level thinkers.
+
+7. Testimonials section
+Use placeholder testimonials for now.
+
+8. About Stefan
+Stefan Oswald is a magician, speaker, creator, and entrepreneur based in Orlando. His work blends magic, comedy, inspiration, and connection.
+
+9. Final CTA
+Headline: Let’s Make Your Event Unforgettable
+Contact form with name, email, phone, event date, event type, location, expected guest count, budget range, message.
+
+WordPress requirements:
+Use a custom WordPress theme or block-based theme.
+Make it editable with Gutenberg blocks.
+Create reusable sections.
+Add SEO-friendly page titles and meta descriptions.
+Use clean HTML, CSS, PHP, and JavaScript.
+No paid plugins required.
+Use Contact Form 7 or a simple custom form shortcode.
+Create a sticky Book Now button.
+Add schema markup for LocalBusiness / PerformingGroup if appropriate.
+Optimize for speed and mobile.
+Use placeholder image blocks named clearly, such as “Replace with Stefan hero photo.”
+
+Tone:
+Professional, warm, confident, slightly funny, inspiring, and clear.
+Avoid hype that sounds fake.
+Focus on booking results.
+
+Deliverables:
+Build the WordPress theme files.
+Include setup instructions.
+Include where to upload the theme.
+Include how Stefan can replace photos, videos, testimonials, and logos.
+Include suggested copy for every page.
