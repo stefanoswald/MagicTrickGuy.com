@@ -1,0 +1,12 @@
+{
+  "buildCommand": "pnpm --filter @workspace/magictrickguy build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "artifacts/magictrickguy/dist/public",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
