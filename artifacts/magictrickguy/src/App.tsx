@@ -17,6 +17,8 @@ import About from "@/pages/about";
 import Testimonials from "@/pages/testimonials";
 import Videos from "@/pages/videos";
 import Contact from "@/pages/contact";
+import Privacy from "@/pages/privacy";
+import Terms from "@/pages/terms";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,8 @@ function Router() {
           <Route path="/testimonials" component={Testimonials} />
           <Route path="/videos" component={Videos} />
           <Route path="/contact" component={Contact} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
           <Route component={NotFound} />
         </Switch>
       </main>

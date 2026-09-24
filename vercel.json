@@ -3,6 +3,18 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": "artifacts/magictrickguy/dist/public",
   "framework": "vite",
+  "redirects": [
+    {
+      "source": "/energy",
+      "destination": "https://www.stefanoswald.com/Energy",
+      "permanent": true
+    },
+    {
+      "source": "/projects/energy",
+      "destination": "https://www.stefanoswald.com/Energy",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

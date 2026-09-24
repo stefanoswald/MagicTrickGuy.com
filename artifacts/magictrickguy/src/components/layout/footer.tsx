@@ -1,4 +1,6 @@
 import { Link } from "wouter";
+import { Facebook, Instagram, Mail, Youtube } from "lucide-react";
+import { contact } from "@/data/content";
 
 export function Footer() {
   return (
@@ -12,22 +14,32 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground max-w-md text-sm leading-relaxed mb-6">
-              World-class magic, comedy, and storytelling for corporate events, trade shows, and exclusive masterminds. Based in Orlando, performing worldwide.
+              World-class magic, comedy, and storytelling for corporate events, trade shows, keynotes, and private events. Based in Orlando, performing worldwide.
             </p>
+            <a
+              href={`mailto:${contact.email}`}
+              className="inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors mb-6"
+            >
+              <Mail className="w-4 h-4 text-primary" />
+              {contact.email}
+            </a>
             <div className="flex gap-4">
-              {/* Social placeholders */}
-              <a href="#" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
-                <span className="sr-only">Instagram</span>
-                Ig
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
-                <span className="sr-only">LinkedIn</span>
-                Li
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
-                <span className="sr-only">YouTube</span>
-                Yt
-              </a>
+              {[
+                { href: contact.instagram, label: "Instagram", Icon: Instagram },
+                { href: contact.facebook, label: "Facebook", Icon: Facebook },
+                { href: contact.youtube, label: "YouTube", Icon: Youtube },
+              ].map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                >
+                  <span className="sr-only">{label}</span>
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 

@@ -19,16 +19,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { contact } from "@/data/content";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().optional(),
   date: z.string().optional(),
-  eventType: z.string({
-    required_error: "Please select an event type",
-  }),
+  eventType: z
+    .string({ required_error: "Please select an event type" })
+    .min(1, "Please select an event type"),
   location: z.string().optional(),
   guests: z.string().optional(),
   budget: z.string().optional(),
@@ -54,18 +56,67 @@ export function BookingForm() {
     },
   });
 
-  function onSubmit(data: FormValues) {
-    console.log(data);
-    toast({
-      title: "Inquiry Sent Successfully",
-      description: "We'll get back to you within 24 hours.",
-    });
-    form.reset();
+  const [submitting, setSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+
+  async function onSubmit(data: FormValues) {
+    setSubmitting(true);
+    try {
+      // Inquiries are delivered to Stefan's inbox by FormSubmit (formsubmit.co).
+      const res = await fetch(`https://formsubmit.co/ajax/${contact.email}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `New booking inquiry: ${data.eventType} (${data.name})`,
+          _replyto: data.email,
+          _template: "table",
+          _captcha: "false",
+          _honey: honeypot,
+          Name: data.name,
+          email: data.email,
+          Phone: data.phone || "-",
+          "Event Date": data.date || "-",
+          "Event Type": data.eventType,
+          Location: data.location || "-",
+          "Guest Count": data.guests || "-",
+          Budget: data.budget || "-",
+          Message: data.message,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json.success === "false" || json.success === false) {
+        throw new Error(json.message || "Submission failed");
+      }
+      toast({
+        title: "Inquiry Sent Successfully",
+        description: "Thank you! Stefan will get back to you within 24 hours.",
+      });
+      form.reset();
+    } catch {
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+        description: `Your inquiry didn't go through. Please email ${contact.email} directly.`,
+      });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        {/* Spam trap: hidden from people, bots tend to fill it in */}
+        <input
+          type="text"
+          name="_honey"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          className="hidden"
+          aria-hidden="true"
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             control={form.control}
@@ -100,7 +151,7 @@ export function BookingForm() {
               <FormItem>
                 <FormLabel className="text-muted-foreground uppercase text-xs tracking-widest font-accent">Phone Number</FormLabel>
                 <FormControl>
-                  <Input type="tel" placeholder="(555) 123-4567" className="bg-card/50 border-border rounded-none h-12" {...field} />
+                  <Input type="tel" placeholder="Optional" className="bg-card/50 border-border rounded-none h-12" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,19 +176,18 @@ export function BookingForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-muted-foreground uppercase text-xs tracking-widest font-accent">Event Type *</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger className="bg-card/50 border-border rounded-none h-12">
                       <SelectValue placeholder="Select event type" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="rounded-none border-border">
-                    <SelectItem value="corporate">Corporate Event</SelectItem>
-                    <SelectItem value="tradeshow">Trade Show</SelectItem>
-                    <SelectItem value="keynote">Keynote / Speaking</SelectItem>
-                    <SelectItem value="mastermind">Mastermind</SelectItem>
-                    <SelectItem value="private">Private Event</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    <SelectItem value="Corporate Event">Corporate Event</SelectItem>
+                    <SelectItem value="Trade Show">Trade Show</SelectItem>
+                    <SelectItem value="Keynote / Speaking">Keynote / Speaking</SelectItem>
+                    <SelectItem value="Private Event">Private Event</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -176,17 +226,18 @@ export function BookingForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-muted-foreground uppercase text-xs tracking-widest font-accent">Entertainment Budget</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger className="bg-card/50 border-border rounded-none h-12">
                       <SelectValue placeholder="Select range" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="rounded-none border-border">
-                    <SelectItem value="1500-3000">$1,500 - $3,000</SelectItem>
-                    <SelectItem value="3000-5000">$3,000 - $5,000</SelectItem>
-                    <SelectItem value="5000-10000">$5,000 - $10,000</SelectItem>
-                    <SelectItem value="10000+">$10,000+</SelectItem>
+                    <SelectItem value="Under $5,000">Under $5,000</SelectItem>
+                    <SelectItem value="$5,000 - $10,000">$5,000 - $10,000</SelectItem>
+                    <SelectItem value="$10,000 - $15,000">$10,000 - $15,000</SelectItem>
+                    <SelectItem value="$15,000+">$15,000+</SelectItem>
+                    <SelectItem value="Not sure yet">Not sure yet</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -213,8 +264,8 @@ export function BookingForm() {
           )}
         />
 
-        <Button type="submit" size="lg" className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
-          SUBMIT INQUIRY
+        <Button type="submit" size="lg" disabled={submitting} className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
+          {submitting ? "SENDING..." : "SUBMIT INQUIRY"}
         </Button>
       </form>
     </Form>

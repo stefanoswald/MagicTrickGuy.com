@@ -1,5 +1,7 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
 import { BookingForm } from "@/components/shared/booking-form";
+import { contact } from "@/data/content";
+import { Mail } from "lucide-react";
 
 export default function Contact() {
   useDocumentTitle("Contact & Booking | Stefan Oswald");
@@ -21,9 +23,14 @@ export default function Contact() {
               
               <div className="p-8 bg-card border border-border mt-12">
                 <h3 className="font-serif text-2xl text-foreground mb-4">Direct Contact</h3>
-                <p className="text-muted-foreground mb-2">booking@magictrickguy.com</p>
-                <p className="text-muted-foreground">(555) 123-4567</p>
-                <p className="text-muted-foreground mt-4 text-sm">Based in Orlando, FL. Available Worldwide.</p>
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="inline-flex items-center gap-3 text-foreground hover:text-primary transition-colors break-all"
+                >
+                  <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+                  {contact.email}
+                </a>
+                <p className="text-muted-foreground mt-4 text-sm">Based in Orlando, FL. Available worldwide.</p>
               </div>
             </div>
             

@@ -1,6 +1,8 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
-import { Placeholder } from "@/components/ui/placeholder";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+import { PhotoGallery } from "@/components/shared/photo-gallery";
+import { galleryPhotos, photos } from "@/data/photos";
 
 export default function About() {
   useDocumentTitle("About Stefan Oswald | Magician");
@@ -11,7 +13,11 @@ export default function About() {
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <Placeholder text="[Stefan Oswald Portrait]" aspectRatio="portrait" />
+              <img
+                src={photos.portrait.src}
+                alt={photos.portrait.alt}
+                className="aspect-[3/4] w-full object-cover border border-border"
+              />
             </div>
             <div>
               <h1 className="font-accent tracking-widest text-sm text-primary mb-4">MEET STEFAN</h1>
@@ -20,19 +26,26 @@ export default function About() {
               </h2>
               <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
                 <p>
-                  Stefan Oswald has spent over 15 years perfecting the art of astonishment. From his early days performing close-up magic to headlining corporate galas across the country, his philosophy remains the same: magic is just a vehicle for connection.
+                  Stefan Oswald has spent more than 15 years perfecting the art of astonishment. From close-up miracles inches from your eyes to full stage illusions, he has earned more than 1,000 five-star reviews from live audiences and been featured on FOX 35 Orlando. Through it all, his philosophy has stayed the same: magic is a vehicle for connection.
                 </p>
                 <p>
                   Based in Orlando, Florida, Stefan combines elite sleight of hand with sharp, corporate-clean comedy. He doesn't just fool audiences—he engages them, ensuring that every guest feels like an active participant rather than a passive observer.
                 </p>
                 <p>
-                  When he's not on stage, Stefan hosts the highly exclusive Magic Mansion Masterminds, bringing together entrepreneurs and creators to share strategies for success.
+                  When he's not on stage, Stefan and his team host The Magic Mansion in Orlando, small-group intensives where magicians and mentalists sharpen their acts alongside world-class mentors.
                 </p>
               </div>
-              <div className="mt-10">
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 rounded-none px-8 tracking-wide">
-                  DOWNLOAD EPK (MEDIA KIT)
-                </Button>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Link href="/contact">
+                  <Button className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 tracking-wide h-12">
+                    CHECK AVAILABILITY
+                  </Button>
+                </Link>
+                <Link href="/videos">
+                  <Button variant="outline" className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10 rounded-none px-8 tracking-wide h-12">
+                    WATCH THE SHOWREEL
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -54,13 +67,23 @@ export default function About() {
               </p>
             </div>
             <div className="order-1 md:order-2">
-              <Placeholder text="[Early Performance Photo]" aspectRatio="video" />
+              <img
+                src={photos.corporateCloseUp.src}
+                alt={photos.corporateCloseUp.alt}
+                className="aspect-[3/2] w-full object-cover border border-border"
+                loading="lazy"
+              />
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <Placeholder text="[Stage Performance Photo]" aspectRatio="video" />
+              <img
+                src={photos.outdoorLevitation.src}
+                alt={photos.outdoorLevitation.alt}
+                className="aspect-[3/2] w-full object-cover border border-border"
+                loading="lazy"
+              />
             </div>
             <div>
               <h4 className="text-2xl font-serif text-foreground mb-4">The Philosophy</h4>
@@ -78,11 +101,7 @@ export default function About() {
             <h2 className="font-accent tracking-widest text-sm text-primary mb-4">GALLERY</h2>
             <h3 className="text-3xl md:text-4xl font-serif text-foreground">Behind the Magic</h3>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <Placeholder key={i} text={`[Gallery Photo ${i}]`} aspectRatio="square" className="hover:opacity-80 transition-opacity cursor-pointer" />
-            ))}
-          </div>
+          <PhotoGallery items={galleryPhotos} />
         </div>
       </section>
     </div>

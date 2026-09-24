@@ -1,5 +1,4 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
-import { Placeholder } from "@/components/ui/placeholder";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import {
@@ -9,12 +8,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { faqs, testimonials } from "@/data/content";
-import { Star } from "lucide-react";
+import { photos } from "@/data/photos";
+import { TestimonialCard } from "@/components/shared/testimonial-card";
 
 export default function TradeShowMagic() {
   useDocumentTitle("Trade Show Magic | Stefan Oswald");
 
-  const showTestimonials = testimonials.filter(t => t.eventType === "Trade Show");
+  const showTestimonials = testimonials.filter((t) => t.eventType === "Corporate");
 
   return (
     <div className="flex flex-col min-h-screen pt-24">
@@ -35,7 +35,11 @@ export default function TradeShowMagic() {
               </Link>
             </div>
             <div>
-              <Placeholder text="[Trade Show Booth Photo]" aspectRatio="video" />
+              <img
+                src={photos.closeUpCube.src}
+                alt={photos.closeUpCube.alt}
+                className="aspect-[4/5] max-h-[560px] w-full object-cover object-[50%_40%] border border-border"
+              />
             </div>
           </div>
         </div>
@@ -92,19 +96,12 @@ export default function TradeShowMagic() {
       {/* Testimonials */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">CLIENT FEEDBACK</h2>
+            <h3 className="text-3xl md:text-4xl font-serif text-foreground">Built to Delight Your Customers</h3>
+          </div>
           {showTestimonials.map((t) => (
-            <div key={t.id} className="bg-card p-8 border border-border">
-              <div className="flex gap-1 mb-4 text-primary">
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
-                ))}
-              </div>
-              <p className="text-foreground text-xl font-serif italic mb-6">"{t.quote}"</p>
-              <div>
-                <p className="font-bold text-foreground">{t.name}</p>
-                <p className="text-sm text-muted-foreground">{t.title}, {t.company}</p>
-              </div>
-            </div>
+            <TestimonialCard key={t.id} t={t} />
           ))}
         </div>
       </section>

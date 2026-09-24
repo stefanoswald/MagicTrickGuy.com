@@ -1,10 +1,10 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
-import { Placeholder } from "@/components/ui/placeholder";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { BookingForm } from "@/components/shared/booking-form";
-import { services, testimonials } from "@/data/content";
-import { Building, Presentation, Mic, Lightbulb, GlassWater, Megaphone, Star, Play, CheckCircle } from "lucide-react";
+import { services, testimonials, contact } from "@/data/content";
+import { YouTubeEmbed } from "@/components/shared/youtube-embed";
+import { Building, Presentation, Mic, Lightbulb, GlassWater, Megaphone, Star, CheckCircle, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -18,15 +18,18 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function Home() {
   useDocumentTitle("Orlando Magician & Corporate Entertainer");
+  const mediaQuotes = testimonials.filter((t) => t.eventType === "Media");
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. Hero */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-background/80 z-10" />
-        <div className="absolute inset-0 z-0">
-          <Placeholder text="[Replace with Stefan hero photo/video — landscape, dramatic lighting]" className="h-full w-full object-cover border-none" />
-        </div>
+        <img
+          src="/images/corporate-gala-stage.webp"
+          alt="Stefan Oswald performing a levitation for a ballroom audience"
+          className="absolute inset-0 z-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/85 via-background/70 to-background" />
         <div className="container relative z-20 mx-auto px-4 md:px-6 text-center max-w-4xl pt-20">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -69,8 +72,8 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12 text-center md:text-left">
             <div>
-              <p className="font-accent tracking-widest text-sm text-primary mb-2">TRUSTED BY THE BEST</p>
-              <p className="text-muted-foreground text-sm">Corporate • Trade Shows • Private Events • Theaters • Masterminds</p>
+              <p className="font-accent tracking-widest text-sm text-primary mb-2">AS SEEN ON FOX 35 ORLANDO</p>
+              <p className="text-muted-foreground text-sm">Corporate Events • Trade Shows • Keynotes • Private Events</p>
             </div>
             <div className="flex gap-8 text-center">
               <div>
@@ -78,18 +81,22 @@ export default function Home() {
                 <p className="text-xs tracking-wider text-muted-foreground uppercase mt-1">Five-Star Reviews</p>
               </div>
               <div>
-                <p className="text-3xl font-serif text-foreground">500+</p>
-                <p className="text-xs tracking-wider text-muted-foreground uppercase mt-1">Corporate Events</p>
-              </div>
-              <div>
                 <p className="text-3xl font-serif text-foreground">15+</p>
-                <p className="text-xs tracking-wider text-muted-foreground uppercase mt-1">Years Experience</p>
+                <p className="text-xs tracking-wider text-muted-foreground uppercase mt-1">Years Performing</p>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <Placeholder key={i} text={`[Logo ${i}]`} className="h-20 bg-transparent border-none" />
+          <div className="grid md:grid-cols-2 gap-6">
+            {mediaQuotes.map((t) => (
+              <figure key={t.id} className="flex gap-4 items-start border border-border bg-background/40 p-6">
+                <Quote className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <blockquote className="font-serif text-2xl italic text-foreground leading-snug">"{t.quote}"</blockquote>
+                  <figcaption className="mt-3 font-accent text-xs tracking-widest uppercase text-muted-foreground">
+                    {t.name}, {t.company}
+                  </figcaption>
+                </div>
+              </figure>
             ))}
           </div>
         </div>
@@ -101,7 +108,7 @@ export default function Home() {
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <h2 className="font-accent tracking-widest text-sm text-primary mb-4">EXPERIENCES</h2>
             <h3 className="text-3xl md:text-5xl font-serif text-foreground mb-6">Tailored For Your Audience</h3>
-            <p className="text-muted-foreground text-lg">From intimate VIP gatherings to arena-sized keynotes, Stefan adapts his performance to fit your exact needs.</p>
+            <p className="text-muted-foreground text-lg">From intimate VIP dinners to conference keynotes, Stefan adapts his performance to fit your exact needs.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => {
@@ -136,14 +143,11 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 max-w-5xl text-center">
           <h2 className="font-accent tracking-widest text-sm text-primary mb-4">SEE IT IN ACTION</h2>
           <h3 className="text-3xl md:text-5xl font-serif text-foreground mb-12">The Difference Is In The Details</h3>
-          <div className="relative group cursor-pointer rounded-lg overflow-hidden shadow-2xl mb-12">
-            <Placeholder text="[Signature Showreel Placeholder]" aspectRatio="video" className="bg-background/50 border-none" />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-all duration-300">
-              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center pl-2 group-hover:scale-110 transition-transform duration-300">
-                <Play className="w-8 h-8 text-primary-foreground" />
-              </div>
-            </div>
-          </div>
+          <YouTubeEmbed
+            videoId={contact.showreelYouTubeId}
+            title="Stefan Oswald, Magician"
+            className="rounded-lg shadow-2xl mb-12 border border-border"
+          />
           <Link href="/videos">
             <Button variant="outline" className="border-foreground/20 text-foreground hover:bg-foreground/5 rounded-none px-8 tracking-wide">
               VIEW MORE VIDEOS
@@ -186,18 +190,23 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE MAGIC MANSION</h2>
-              <h3 className="text-4xl md:text-5xl font-serif text-foreground mb-6">A Mastermind Unlike Any Other</h3>
+              <h3 className="text-4xl md:text-5xl font-serif text-foreground mb-6">Where Performers Level Up</h3>
               <p className="text-foreground/80 text-lg mb-8 leading-relaxed">
-                Join an exclusive group of entrepreneurs, creators, and high-level thinkers for a 3-day immersive experience. Strategy, networking, and impossible magic, all under one roof.
+                Stefan and his team host The Magic Mansion in Orlando: small-group, multi-day intensives where magicians and mentalists develop their acts alongside world-class mentors like Banachek and Kent Axell.
               </p>
               <Link href="/masterminds">
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 rounded-none tracking-wide h-12">
-                  JOIN THE NEXT MASTERMIND
+                  EXPLORE THE MAGIC MANSION
                 </Button>
               </Link>
             </div>
             <div>
-              <Placeholder text="[Magic Mansion Photo]" aspectRatio="square" className="border-border bg-background/20" />
+              <img
+                src="/images/close-up-cube.webp"
+                alt="Stefan Oswald holding a Rubik's Cube mid-trick"
+                className="aspect-square w-full object-cover object-[50%_35%] border border-border"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export const services = [
   {
     id: "masterminds",
     title: "Masterminds",
-    description: "The Magic Mansion Mastermind: A 3-day transformative experience for high-level thinkers.",
+    description: "The Magic Mansion: immersive multi-day intensives in Orlando where performers train with world-class mentors.",
     href: "/masterminds",
     icon: "Lightbulb"
   },
@@ -37,65 +37,124 @@ export const services = [
   {
     id: "emcee-host",
     title: "Emcee / Host",
-    description: "Keep your event flowing smoothly with a charismatic host who knows how to hold a room.",
+    description: "Keep your event flowing smoothly with a charismatic host who knows how to hold a room. Available as an add-on to any booking.",
     href: "/contact",
     icon: "Megaphone"
   }
 ];
 
-export const testimonials = [
+export const contact = {
+  email: "StefanPaulOswald@gmail.com",
+  instagram: "https://www.instagram.com/magictrickguy/",
+  facebook: "https://www.facebook.com/MagicTrickGuy/",
+  youtube: "https://www.youtube.com/@magictrickguy",
+  showreelYouTubeId: "dUVRMhvR3As",
+  magicMansionUrl: "https://the-magic-mansion.com",
+};
+
+export type Testimonial = {
+  id: number;
+  quote: string;
+  name: string;
+  title?: string;
+  company?: string;
+  eventType: "Corporate" | "Media" | "Live Show";
+  rating: number;
+};
+
+export const testimonials: Testimonial[] = [
   {
     id: 1,
-    quote: "Stefan didn't just entertain our guests; he completely elevated the energy of the entire evening. People are still talking about his performance weeks later.",
-    name: "Sarah Jenkins",
-    title: "VP of Marketing",
-    company: "TechNova Solutions",
+    quote: "We had Stefan perform his magic at a corporate event where our customers not only found his illusions fascinating and mind-boggling, but they also found his demeanor to be quite charming and his delivery and dialog to be humorous and witty. We would definitely invite him back to delight our customers at more events.",
+    name: "Elizabeth Huber",
+    company: "Huber & Associates",
     eventType: "Corporate",
     rating: 5
   },
   {
     id: 2,
-    quote: "Our trade show booth traffic tripled. Stefan seamlessly integrated our product messaging into his illusions. An absolute professional.",
-    name: "Marcus Thorne",
-    title: "Event Director",
-    company: "Global Logistics",
-    eventType: "Trade Show",
+    quote: "His mind reading and magic blew my mind!",
+    name: "Pooja Lodhia",
+    company: "ABC13 Houston",
+    eventType: "Media",
     rating: 5
   },
   {
     id: 3,
-    quote: "The Magic Mansion Mastermind was a paradigm shift. Being surrounded by that level of creativity and business acumen changed how I run my company.",
-    name: "Elena Rodriguez",
-    title: "Founder & CEO",
-    company: "Elevate Media",
-    eventType: "Mastermind",
+    quote: "Tremendous.",
+    name: "David Martin",
+    company: "FOX 35 Orlando",
+    eventType: "Media",
     rating: 5
   },
   {
     id: 4,
-    quote: "Finding entertainment that is sophisticated, genuinely funny, and totally clean is rare. Stefan delivered on all fronts. He made me look like a hero for booking him.",
-    name: "David Chen",
-    title: "HR Director",
-    company: "Apex Financial",
-    eventType: "Corporate",
+    quote: "Melt your brain fantastic. Mentally engaging. Better than a thrill ride. Stefan was outstanding. Our first Magic show. 5 year anniversary.",
+    name: "Jason Ryan",
+    eventType: "Live Show",
     rating: 5
   },
   {
     id: 5,
-    quote: "Stefan's keynote was the perfect blend of inspiration and impossible magic. He didn't just do tricks; he delivered a powerful message about perception and focus.",
-    name: "Amanda Vance",
-    title: "Conference Organizer",
-    company: "Innovate 2024",
-    eventType: "Keynote",
+    quote: "Stefan was an amazing performer. He kept us on the edge of our seats all the time. Very amazing performance! Would recommend this show to everyone! I grew up with a grandfather who was a professional magician and Stefan kept my husband and I amazed! Awesome performance! Thanks Stefan! Will definitely be back again!",
+    name: "Guy Schnaars",
+    eventType: "Live Show",
     rating: 5
   },
   {
     id: 6,
-    quote: "We've hired dozens of magicians over the years for our VIP client dinners. Stefan is in a class of his own. Unbelievable skill and undeniable charisma.",
-    name: "James Wellington",
-    title: "Managing Partner",
-    company: "Wellington Wealth",
-    eventType: "Private Event",
+    quote: "It blew my mind!! It reminded me how much I love Magic!! Plus the Magician, Stefan, that performed the show I watched... he was really awesome! He kept a big ol' smile on my face!",
+    name: "Chazz Jackson",
+    eventType: "Live Show",
+    rating: 5
+  },
+  {
+    id: 7,
+    quote: "Stefan was great. His magic was amazing and fun for the whole family. The children were very involved and even the most serious people can feel like a child again with the wonders he showed. I definitely would recommend this show and would come again.",
+    name: "Isaac Retamar",
+    eventType: "Live Show",
+    rating: 5
+  },
+  {
+    id: 8,
+    quote: "The great and amazing Stefan is one of the best local magicians in Florida. I believe he can be the next David Copperfield.",
+    name: "AC Yang",
+    eventType: "Live Show",
+    rating: 5
+  },
+  {
+    id: 9,
+    quote: "Stefan was fantastic! This is the coolest magic show I've seen, I was super amused and amazed the entire time! My nephews loved it, such a fantastic time! I would definitely do it again!",
+    name: "Lori Lauridsen",
+    eventType: "Live Show",
+    rating: 5
+  },
+  {
+    id: 10,
+    quote: "Stefan was amazing!! The show is well worth the tickets. The audience is very involved, and the show is up close and personal making the magic very real!! We thoroughly enjoyed it!",
+    name: "RW",
+    eventType: "Live Show",
+    rating: 5
+  },
+  {
+    id: 11,
+    quote: "Stefan was worth the watch. The jokes with the combination of tricks made for a fun time. Very social and worth seeing again.",
+    name: "Jude Zamor",
+    eventType: "Live Show",
+    rating: 5
+  },
+  {
+    id: 12,
+    quote: "I absolutely LOVED this place! Stefan was amazing and very friendly and all of the magic will leave you speechless. I will definitely be back again to see another show",
+    name: "Khadijah Daniels",
+    eventType: "Live Show",
+    rating: 5
+  },
+  {
+    id: 13,
+    quote: "Stefan was an unbelievable amazing magician. He had my whole family amazed. Thoroughly entertaining and would absolutely recommend you going to see his show.",
+    name: "Anna Lynn",
+    eventType: "Live Show",
     rating: 5
   }
 ];
@@ -107,7 +166,7 @@ export const faqs = [
   },
   {
     question: "Do you travel for events?",
-    answer: "Yes. While based in Orlando, Stefan regularly travels nationwide and internationally for corporate events, trade shows, and speaking engagements."
+    answer: "Yes. Stefan is based in Orlando, Florida, and travels nationwide and internationally for corporate events, trade shows, and speaking engagements."
   },
   {
     question: "Is the show 'clean'?",
@@ -120,5 +179,9 @@ export const faqs = [
   {
     question: "Can you incorporate our company's message or product?",
     answer: "Yes! For trade shows and keynote presentations, Stefan specializes in weaving your specific messaging, branding, or product features seamlessly into the performance."
+  },
+  {
+    question: "Can Stefan also emcee our event?",
+    answer: "Yes. Stefan can host your program as emcee in addition to performing, keeping introductions, awards, and transitions running smoothly. Emcee services can be added to any booking."
   }
 ];

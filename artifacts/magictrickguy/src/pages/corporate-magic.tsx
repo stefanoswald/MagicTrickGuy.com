@@ -1,5 +1,4 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
-import { Placeholder } from "@/components/ui/placeholder";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import {
@@ -9,12 +8,16 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { faqs, testimonials } from "@/data/content";
-import { Star } from "lucide-react";
+import { photos } from "@/data/photos";
+import { TestimonialCard } from "@/components/shared/testimonial-card";
 
 export default function CorporateMagic() {
   useDocumentTitle("Corporate Event Magic | Stefan Oswald");
 
-  const corpTestimonials = testimonials.filter(t => t.eventType === "Corporate").slice(0, 2);
+  const corpTestimonials = [
+    ...testimonials.filter((t) => t.eventType === "Corporate"),
+    ...testimonials.filter((t) => t.eventType === "Media"),
+  ].slice(0, 2);
 
   return (
     <div className="flex flex-col min-h-screen pt-24">
@@ -36,7 +39,11 @@ export default function CorporateMagic() {
               </Link>
             </div>
             <div>
-              <Placeholder text="[Corporate Event Photo]" aspectRatio="video" />
+              <img
+                src={photos.corporateCloseUp.src}
+                alt={photos.corporateCloseUp.alt}
+                className="aspect-[3/2] w-full object-cover border border-border"
+              />
             </div>
           </div>
         </div>
@@ -96,18 +103,7 @@ export default function CorporateMagic() {
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-8">
             {corpTestimonials.map((t) => (
-              <div key={t.id} className="bg-card p-8 border border-border">
-                <div className="flex gap-1 mb-4 text-primary">
-                  {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current" />
-                  ))}
-                </div>
-                <p className="text-foreground text-lg font-serif italic mb-6">"{t.quote}"</p>
-                <div>
-                  <p className="font-bold text-foreground">{t.name}</p>
-                  <p className="text-sm text-muted-foreground">{t.title}, {t.company}</p>
-                </div>
-              </div>
+              <TestimonialCard key={t.id} t={t} />
             ))}
           </div>
         </div>
