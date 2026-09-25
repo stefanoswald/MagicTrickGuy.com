@@ -77,6 +77,7 @@ export const reviewPlatforms: ReviewPlatform[] = [
     name: "Google",
     rating: 4.8,
     reviews: 1181,
+    namedStefan: 103,
     url: "https://www.google.com/maps/place/Theatre+Magic+%2F+The+Great+Magic+Hall/@28.3290463,-81.5159586,17z/data=!4m8!3m7!1s0x88dd7f5874f56f85:0xf7450219e9ced561!8m2!3d28.3290463!4d-81.5159586!9m1!1b1",
   },
 ];
