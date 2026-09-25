@@ -26,7 +26,7 @@ export default function About() {
               </h2>
               <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
                 <p>
-                  Stefan Oswald has spent more than 15 years perfecting the art of astonishment. From close-up miracles inches from your eyes to full stage illusions, he has earned more than 1,000 five-star reviews from live audiences and been featured on FOX 35 Orlando. Through it all, his philosophy has stayed the same: magic is a vehicle for connection.
+                  Stefan Oswald has spent more than 15 years perfecting the art of astonishment. From close-up miracles inches from your eyes to full stage illusions, he has earned more than 1,000 five-star reviews from live audiences and appeared on FOX, NBC, and ABC. Through it all, his philosophy has stayed the same: magic is a vehicle for connection.
                 </p>
                 <p>
                   Based in Orlando, Florida, Stefan combines elite sleight of hand with sharp, corporate-clean comedy. He doesn't just fool audiences—he engages them, ensuring that every guest feels like an active participant rather than a passive observer.

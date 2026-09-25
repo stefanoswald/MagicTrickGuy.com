@@ -11,11 +11,28 @@ const pillars = [
   },
   {
     title: "World-Class Mentors",
-    desc: "Programs bring in respected names from magic and mentalism, such as Banachek (consultant to Penn & Teller, Criss Angel, and David Blaine) and Kent Axell.",
+    desc: "Each program is led by respected names in magic and mentalism, from two-time FISM award winner Gregory Wilson to Banachek and Kent Axell.",
   },
   {
     title: "Small by Design",
-    desc: "Seats are capped at around 20 performers, so everyone gets real stage time, real attention, and a clear plan for what to work on next.",
+    desc: "Groups stay small, capped between 7 and 20 performers, so everyone gets real stage time, real attention, and a clear plan for what to work on next.",
+  },
+];
+
+const pastPrograms = [
+  {
+    when: "November 2025",
+    title: "The Magic Mansion Mastermind",
+    mentors: "with Gregory Wilson",
+    desc: "A five-day retreat for up to seven magicians: daily workshops, one-on-one coaching, and a polished set of signature pieces with the two-time FISM award winner.",
+    href: "https://the-magic-mansion.com/Greg-Wilson",
+  },
+  {
+    when: "August 2026",
+    title: "The Mentalism Bootcamp",
+    mentors: "with Banachek & Kent Axell",
+    desc: "Three days of hands-on act direction for up to 20 performers, led by the mentalist who has consulted for Penn & Teller, Criss Angel, and David Blaine, alongside Kent Axell.",
+    href: "https://the-magic-mansion.com",
   },
 ];
 
@@ -36,11 +53,11 @@ export default function Masterminds() {
             Immersive Masterminds for Performers
           </h2>
           <p className="text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
-            Stefan and his team host small-group, multi-day workshops in Orlando where magicians and mentalists put their material on its feet and develop it alongside world-class mentors.
+            Stefan and his team host small-group, multi-day masterminds in Orlando where magicians and mentalists put their material on its feet and develop it alongside world-class mentors.
           </p>
           <a href={contact.magicMansionUrl} target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
-              SEE UPCOMING PROGRAMS <ExternalLink className="ml-2 h-5 w-5" />
+              VISIT THE MAGIC MANSION <ExternalLink className="ml-2 h-5 w-5" />
             </Button>
           </a>
         </div>
@@ -66,12 +83,41 @@ export default function Masterminds() {
         </div>
       </section>
 
+      {/* Past programs */}
+      <section className="py-24 bg-card border-t border-border">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="text-center mb-12">
+            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">PAST MASTERMINDS</h2>
+            <h3 className="text-3xl md:text-4xl font-serif text-foreground">Two Programs and Counting</h3>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {pastPrograms.map((p) => (
+              <a
+                key={p.title}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block bg-background p-8 border border-border hover:border-primary transition-colors"
+              >
+                <p className="font-accent text-xs tracking-widest text-primary mb-3">{p.when.toUpperCase()}</p>
+                <h4 className="font-serif text-2xl text-foreground">{p.title}</h4>
+                <p className="font-serif italic text-lg text-foreground/80 mb-4">{p.mentors}</p>
+                <p className="text-muted-foreground mb-6">{p.desc}</p>
+                <span className="inline-flex items-center text-sm font-medium tracking-wide text-foreground group-hover:text-primary transition-colors uppercase">
+                  Learn more <ExternalLink className="ml-2 h-4 w-4" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="py-24 bg-card border-t border-border text-center">
+      <section className="py-24 bg-background border-t border-border text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-2xl">
           <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-6">Want In on the Next One?</h2>
           <p className="text-muted-foreground mb-8 text-lg">
-            Current dates, mentors, pricing, and seat availability live at The-Magic-Mansion.com.
+            Future dates, mentors, pricing, and seat availability will be posted at The-Magic-Mansion.com.
           </p>
           <a href={contact.magicMansionUrl} target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">

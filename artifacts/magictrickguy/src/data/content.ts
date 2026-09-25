@@ -52,6 +52,35 @@ export const contact = {
   magicMansionUrl: "https://the-magic-mansion.com",
 };
 
+/**
+ * Public review listings for The Great Magic Hall (Old Town Kissimmee), where Stefan was a resident magician.
+ * Ratings and counts as shown on each site; "namedStefan" = reviews that mention Stefan by name
+ * (collected Sept 2026, see the reviews spreadsheet in the project). Leave namedStefan undefined if not counted.
+ */
+export type ReviewPlatform = {
+  name: string;
+  rating: number;
+  reviews: number;
+  namedStefan?: number;
+  url: string;
+};
+
+export const reviewPlatforms: ReviewPlatform[] = [
+  {
+    name: "Tripadvisor",
+    rating: 4.9,
+    reviews: 480,
+    namedStefan: 99,
+    url: "https://www.tripadvisor.com/Attraction_Review-g34352-d8353009-Reviews-The_Great_Magic_Hall-Kissimmee_Florida.html",
+  },
+  {
+    name: "Google",
+    rating: 4.8,
+    reviews: 1181,
+    url: "https://www.google.com/maps/place/Theatre+Magic+%2F+The+Great+Magic+Hall/@28.3290463,-81.5159586,17z/data=!4m8!3m7!1s0x88dd7f5874f56f85:0xf7450219e9ced561!8m2!3d28.3290463!4d-81.5159586!9m1!1b1",
+  },
+];
+
 export type Testimonial = {
   id: number;
   quote: string;
@@ -75,7 +104,7 @@ export const testimonials: Testimonial[] = [
     id: 2,
     quote: "His mind reading and magic blew my mind!",
     name: "Pooja Lodhia",
-    company: "ABC13 Houston",
+    company: "FOX 4 Fort Myers",
     eventType: "Media",
     rating: 5
   },

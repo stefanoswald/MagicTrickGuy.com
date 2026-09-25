@@ -72,7 +72,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12 text-center md:text-left">
             <div>
-              <p className="font-accent tracking-widest text-sm text-primary mb-2">AS SEEN ON FOX 35 ORLANDO</p>
+              <p className="font-accent tracking-widest text-sm text-primary mb-2">AS SEEN ON FOX, NBC &amp; ABC</p>
               <p className="text-muted-foreground text-sm">Corporate Events • Trade Shows • Keynotes • Private Events</p>
             </div>
             <div className="flex gap-8 text-center">
@@ -192,7 +192,7 @@ export default function Home() {
               <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE MAGIC MANSION</h2>
               <h3 className="text-4xl md:text-5xl font-serif text-foreground mb-6">Where Performers Level Up</h3>
               <p className="text-foreground/80 text-lg mb-8 leading-relaxed">
-                Stefan and his team host The Magic Mansion in Orlando: small-group, multi-day intensives where magicians and mentalists develop their acts alongside world-class mentors like Banachek and Kent Axell.
+                Stefan and his team host The Magic Mansion in Orlando: small-group, multi-day intensives where magicians and mentalists develop their acts alongside world-class mentors like Gregory Wilson, Banachek, and Kent Axell.
               </p>
               <Link href="/masterminds">
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 rounded-none tracking-wide h-12">
