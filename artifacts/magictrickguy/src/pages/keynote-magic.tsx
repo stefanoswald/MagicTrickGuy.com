@@ -3,6 +3,7 @@ import { pickFaqs, testimonials } from "@/data/content";
 import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
 import { ProofStrip } from "@/components/shared/proof-strip";
+import { ClientMarquee } from "@/components/shared/client-marquee";
 import {
   FaqSection,
   FeatureGrid,
@@ -39,10 +40,11 @@ export default function KeynoteMagic() {
           </>
         }
         ctaLabel="TELL ME ABOUT YOUR AUDIENCE"
-        photo={photos.keynote}
+        photo={{ ...photos.crowdCheering, focus: "62% 50%" }}
       />
 
       <ProofStrip className="border-t-0" />
+      <ClientMarquee />
 
       <FeatureGrid
         eyebrow="WHAT IT DOES FOR YOUR EVENT"

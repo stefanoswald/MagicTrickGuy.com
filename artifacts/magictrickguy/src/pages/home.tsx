@@ -3,11 +3,13 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, GlassWater, Megaphone, Mic, Presentation, Quote, Star, Users, Zap } from "lucide-react";
 import { BookingForm } from "@/components/shared/booking-form";
+import { BookCallBar } from "@/components/shared/book-call";
+import { ClientMarquee } from "@/components/shared/client-marquee";
 import { PromoVideo } from "@/components/shared/promo-video";
 import { ProofStrip } from "@/components/shared/proof-strip";
 import { ProcessSteps, SectionHeading } from "@/components/shared/page-sections";
 import { outcomes, proof, testimonials } from "@/data/content";
-import { photos } from "@/data/photos";
+import { photos, type Photo } from "@/data/photos";
 
 const iconMap: Record<string, React.ElementType> = {
   Users,
@@ -17,6 +19,22 @@ const iconMap: Record<string, React.ElementType> = {
   Mic,
   GlassWater,
 };
+
+/** The room, not the trick: each outcome card shows guests getting the result the planner wants. */
+const outcomePhotos: Record<string, Photo> = {
+  connection: { ...photos.guestsLaughingTogether, focus: "50% 35%" },
+  energy: { ...photos.groupReacting, focus: "50% 45%" },
+  booth: { ...photos.boothCrowd, focus: "50% 45%" },
+  smooth: { ...photos.emceeOnStage, focus: "30% 40%" },
+  message: { ...photos.roomLaughing, focus: "40% 50%" },
+  story: { ...photos.sharedMoment, focus: "50% 55%" },
+};
+
+const trustPhotos = [
+  { ...photos.agtStage, caption: "On the America's Got Talent stage" },
+  { ...photos.holidayStage, caption: "A holiday stage show at a JW Marriott" },
+  { ...photos.fox35Stage, caption: "Live on FOX 35 Orlando" },
+];
 
 /** What planners worry about, and how Stefan takes it off their plate. */
 const worries = [
@@ -72,12 +90,12 @@ export default function Home() {
       desc: "Different cultures, ages, and crowds. Whoever is in your room, I'll meet them where they are.",
     },
     {
-      value: "America's Got Talent, FOX, NBC & ABC",
-      desc: "Big stages and live TV, where there are no second takes. Your event is in steady hands.",
+      value: "America's Got Talent & network TV",
+      desc: "FOX, NBC, CBS, ABC, and the reality series The Blox. Live TV has no second takes. Your event is in steady hands.",
     },
     {
       value: `${proof.reviews} five-star reviews`,
-      desc: "From real audiences who left happy. Clients include Dell, IBM, and HP.",
+      desc: "From real audiences who left happy, at shows big and small.",
     },
   ];
 
@@ -135,6 +153,7 @@ export default function Home() {
 
       {/* 2. Proof, as reassurance */}
       <ProofStrip />
+      <ClientMarquee />
 
       {/* 3. Outcomes before services */}
       <section className="bg-background py-24">
@@ -147,6 +166,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {outcomes.map((o, index) => {
               const Icon = iconMap[o.icon] || Star;
+              const photo = outcomePhotos[o.id];
               return (
                 <motion.div
                   key={o.id}
@@ -157,15 +177,31 @@ export default function Home() {
                 >
                   <Link
                     href={o.href}
-                    className="group flex h-full flex-col border border-border bg-card p-8 transition-all duration-300 hover:border-primary"
+                    className="group flex h-full flex-col overflow-hidden border border-border bg-card transition-all duration-300 hover:border-primary"
                   >
-                    <Icon className="mb-6 h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-110" />
-                    <h3 className="mb-3 font-serif text-2xl text-foreground">{o.title}</h3>
-                    <p className="mb-6 flex-grow text-muted-foreground">{o.description}</p>
-                    <span className="mt-auto flex items-center text-sm font-medium uppercase tracking-wide text-foreground transition-colors group-hover:text-primary">
-                      {o.linkLabel}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>
+                    {photo && (
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img
+                          src={photo.src}
+                          alt={photo.alt}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          style={{ objectPosition: photo.focus }}
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-grow flex-col p-7">
+                      <div className="mb-3 flex items-center gap-3">
+                        <Icon className="h-6 w-6 flex-shrink-0 text-primary" />
+                        <h3 className="font-serif text-2xl text-foreground">{o.title}</h3>
+                      </div>
+                      <p className="mb-6 flex-grow text-muted-foreground">{o.description}</p>
+                      <span className="mt-auto flex items-center text-sm font-medium uppercase tracking-wide text-foreground transition-colors group-hover:text-primary">
+                        {o.linkLabel}
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
                   </Link>
                 </motion.div>
               );
@@ -222,18 +258,44 @@ export default function Home() {
                   It's still the best description of my job: make the room a happier place to be.
                 </p>
               </div>
-              <p className="mt-8 border-l-2 border-primary pl-6 font-serif text-2xl italic text-foreground">
-                The magic is the tool. The room is the goal.
-              </p>
             </div>
             <div>
               <img
-                src={photos.corporateCloseUp.src}
-                alt={photos.corporateCloseUp.alt}
+                src={photos.partyGuestSmiling.src}
+                alt={photos.partyGuestSmiling.alt}
                 loading="lazy"
-                className="aspect-[4/5] w-full border border-border object-cover md:aspect-[3/4]"
+                decoding="async"
+                className="aspect-[4/5] w-full border border-border object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5b. The tool and the goal, side by side */}
+      <section className="border-t border-border bg-card py-20">
+        <div className="container mx-auto max-w-5xl px-4 md:px-6">
+          <h2 className="mb-10 text-center font-serif text-3xl text-foreground md:mb-14 md:text-5xl">
+            The magic is the tool. <span className="italic text-primary">The room is the goal.</span>
+          </h2>
+          <div className="grid grid-cols-2 gap-3 md:gap-8">
+            {[
+              { photo: photos.cube, label: "THE TOOL" },
+              { photo: photos.demoDayAmazed, label: "THE GOAL" },
+            ].map(({ photo, label }) => (
+              <figure key={label}>
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/5] w-full border border-border object-cover"
+                />
+                <figcaption className="mt-3 text-center font-accent text-xs tracking-widest text-primary md:mt-4 md:text-sm">
+                  {label}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
@@ -242,6 +304,7 @@ export default function Home() {
       <ProcessSteps
         id="how-it-works"
         title="Simple for you, from the first call to the last guest"
+        photo={photos.listening}
         steps={[
           {
             title: "Tell me what a win looks like",
@@ -265,6 +328,20 @@ export default function Home() {
             eyebrow="WHY PLANNERS TRUST ME"
             title="You're putting your reputation on the line. Here's why you can relax."
           />
+          <div className="mb-10 grid gap-4 sm:grid-cols-3">
+            {trustPhotos.map((p) => (
+              <figure key={p.src}>
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-video w-full border border-border object-cover"
+                />
+                <figcaption className="mt-2 text-sm text-muted-foreground">{p.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
           <div className="mb-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {trust.map((t) => (
               <div key={t.value} className="border border-border bg-card p-6">
@@ -319,15 +396,31 @@ export default function Home() {
 
       {/* 8. Let's talk */}
       <section className="scroll-mt-24 border-t border-border bg-card py-24" id="book">
-        <div className="container mx-auto max-w-4xl px-4 md:px-6">
+        <div className="container mx-auto max-w-6xl px-4 md:px-6">
           <SectionHeading
             eyebrow="LET'S TALK"
             title="Let's make your event a win"
             intro="Tell me what you're planning and what success looks like. I'll reply within 24 hours with ideas and availability."
-            className="mb-12"
+            className="mb-8"
           />
-          <div className="border border-border bg-background p-6 md:p-10">
-            <BookingForm />
+          <BookCallBar className="mb-12" />
+          <div className="grid items-start gap-10 lg:grid-cols-[2fr_3fr]">
+            <figure className="hidden lg:block">
+              <img
+                src={photos.portrait.src}
+                alt={photos.portrait.alt}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/5] w-full border border-border object-cover"
+                style={{ objectPosition: photos.portrait.focus }}
+              />
+              <figcaption className="mt-3 text-sm text-muted-foreground">
+                You'll talk with me directly, not an agency.
+              </figcaption>
+            </figure>
+            <div className="border border-border bg-background p-6 md:p-10">
+              <BookingForm />
+            </div>
           </div>
         </div>
       </section>

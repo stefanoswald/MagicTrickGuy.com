@@ -1,15 +1,18 @@
+import { useEffect, useState } from "react";
 import { useDocumentTitle } from "@/hooks/use-document-title";
 import { pickFaqs, testimonials } from "@/data/content";
 import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
 import { ProofStrip } from "@/components/shared/proof-strip";
+import { ClientMarquee } from "@/components/shared/client-marquee";
 import {
+  CtaButton,
   FaqSection,
   PageCta,
+  PhotoRow,
   ProcessSteps,
   PullQuote,
   SectionHeading,
-  ServiceHero,
 } from "@/components/shared/page-sections";
 
 /** What a good emcee protects the planner from. */
@@ -40,6 +43,64 @@ const handled = [
   },
 ];
 
+/**
+ * Full-bleed hero: an 8-second silent loop of Stefan hosting at The Magic Studio on larger screens,
+ * a still frame on phones and for anyone who prefers reduced motion.
+ */
+function EmceeHero() {
+  const [showLoop, setShowLoop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px) and (prefers-reduced-motion: no-preference)");
+    const update = () => setShowLoop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  return (
+    <section className="relative overflow-hidden border-b border-border bg-background">
+      <div className="relative aspect-video w-full md:absolute md:inset-0 md:aspect-auto">
+        {showLoop ? (
+          <video
+            className="h-full w-full object-cover"
+            src="/videos/emcee-hero-loop.mp4"
+            poster={photos.emceeWide.src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          />
+        ) : (
+          <img src={photos.emceeWide.src} alt={photos.emceeWide.alt} className="h-full w-full object-cover" />
+        )}
+        <div className="absolute inset-0 hidden bg-gradient-to-l from-background/95 via-background/70 to-transparent md:block" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      </div>
+      <div className="container relative mx-auto max-w-6xl px-4 pb-16 pt-8 md:flex md:min-h-[640px] md:items-center md:justify-end md:px-6 md:py-24">
+        <div className="max-w-xl md:max-w-lg">
+          <p className="mb-4 font-accent text-sm tracking-widest text-primary">EVENT EMCEE &amp; HOST</p>
+          <h1 className="mb-6 font-serif text-4xl font-bold leading-tight text-foreground md:text-6xl">
+            Hand me the mic and stop worrying
+          </h1>
+          <div className="mb-8 space-y-4 text-lg leading-relaxed text-foreground/80">
+            <p>
+              A great emcee protects your event. While you're juggling vendors, VIPs, and a schedule that keeps
+              changing, someone has to hold the room together.
+            </p>
+            <p>
+              That's what I do. I keep your program on time, fill the gaps, handle the surprises, and keep the energy
+              up, so you can stop watching the clock and enjoy the night.
+            </p>
+          </div>
+          <CtaButton label="TELL ME ABOUT YOUR PROGRAM" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function EmceeHost() {
   useDocumentTitle("Event Emcee & Host in Orlando", {
     description:
@@ -50,27 +111,11 @@ export default function EmceeHost() {
   const quote = testimonials.find((t) => t.eventType === "Corporate");
 
   return (
-    <div className="flex min-h-screen flex-col pt-24">
-      <ServiceHero
-        eyebrow="EVENT EMCEE & HOST"
-        title="Hand me the mic and stop worrying"
-        intro={
-          <>
-            <p>
-              A great emcee protects your event. While you're juggling vendors, VIPs, and a schedule that keeps
-              changing, someone has to hold the room together.
-            </p>
-            <p>
-              That's what I do. I keep your program on time, fill the gaps, handle the surprises, and keep the energy
-              up, so you can stop watching the clock and enjoy the night.
-            </p>
-          </>
-        }
-        ctaLabel="TELL ME ABOUT YOUR PROGRAM"
-        photo={photos.galaStage}
-      />
+    <div className="flex min-h-screen flex-col pt-20 md:pt-0">
+      <EmceeHero />
 
       <ProofStrip className="border-t-0" />
+      <ClientMarquee />
 
       <section className="bg-background py-24">
         <div className="container mx-auto max-w-6xl px-4 md:px-6">
@@ -89,6 +134,8 @@ export default function EmceeHost() {
           </div>
         </div>
       </section>
+
+      <PhotoRow className="pt-0 md:pt-0" items={[{ ...photos.crowdCheering, ratio: 21 / 9, focus: "60% 60%" }]} />
 
       <PullQuote>You run the event. I'll run the room.</PullQuote>
 

@@ -58,12 +58,37 @@ export const outcomes = [
  * Source: Stefan's one sheet and his own notes (Oct 2026). Keep these in sync with the promo video's cards.
  */
 export const proof = {
-  asSeenOn: ["America's Got Talent", "FOX", "NBC", "ABC"],
+  asSeenOn: ["America's Got Talent", "The Blox", "FOX", "NBC", "CBS", "ABC"],
   shows: "3,000+",
   countries: "43",
   reviews: "1,000+",
   clients: ["Dell", "IBM", "HP"],
 };
+
+/**
+ * Past clients, shown as a scrolling logo marquee. Logos were taken from each organization's
+ * current website or brand page (Oct 2026). `height` balances visual weight between wide
+ * wordmarks and square badges.
+ */
+export type Client = { name: string; logo: string; height: number };
+
+export const clients: Client[] = [
+  { name: "Dell Technologies", logo: "/images/clients/dell.webp", height: 30 },
+  { name: "Amazon", logo: "/images/clients/amazon.webp", height: 40 },
+  { name: "The Great Magic Hall", logo: "/images/clients/the-great-magic-hall.webp", height: 38 },
+  { name: "Google", logo: "/images/clients/google.webp", height: 40 },
+  { name: "American Red Cross", logo: "/images/clients/red-cross.webp", height: 42 },
+  { name: "IBM", logo: "/images/clients/ibm.webp", height: 40 },
+  { name: "Salty Sam's Pirate Cruise", logo: "/images/clients/salty-sams-pirate-cruise.webp", height: 50 },
+  { name: "Apple", logo: "/images/clients/apple.webp", height: 48 },
+  { name: "Goodwill", logo: "/images/clients/goodwill.webp", height: 56 },
+  { name: "Facebook", logo: "/images/clients/facebook.webp", height: 32 },
+  { name: "Give Kids The World Village", logo: "/images/clients/give-kids-the-world.webp", height: 60 },
+  { name: "HP", logo: "/images/clients/hp.webp", height: 48 },
+  { name: "PGA of America", logo: "/images/clients/pga-of-america.webp", height: 56 },
+  { name: "Hexco Global", logo: "/images/clients/hexco-global.webp", height: 34 },
+  { name: "Collier County Public Schools", logo: "/images/clients/collier-county-public-schools.webp", height: 38 },
+];
 
 export const contact = {
   email: "StefanPaulOswald@gmail.com",
@@ -71,6 +96,14 @@ export const contact = {
   facebook: "https://www.facebook.com/MagicTrickGuy/",
   youtube: "https://www.youtube.com/@magictrickguy",
   magicMansionUrl: "https://the-magic-mansion.com",
+  /**
+   * "Book a call": Stefan's Google Calendar appointment schedule (Mondays and Wednesdays,
+   * 4-6 pm Eastern, 15 minutes). Google hides any time that's already busy on his calendar.
+   * Edit hours in Google Calendar > Booking pages > "Call with Stefan Oswald".
+   */
+  bookingEmbedUrl:
+    "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1jXQv6qN1zcSLsrJD0fZKT9DRqujJAYKvW4YuUAMDZzFZixAue1ffK1SkYe6AVVmrcLevryXkS?gv=true",
+  bookingUrl: "https://calendar.app.google/YmRSzh9C3nY5EcYm6",
 };
 
 /**

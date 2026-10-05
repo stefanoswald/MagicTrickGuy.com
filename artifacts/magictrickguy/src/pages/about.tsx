@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { PhotoGallery } from "@/components/shared/photo-gallery";
+import { ClientMarquee } from "@/components/shared/client-marquee";
 import { CtaButton, PageCta, SectionHeading } from "@/components/shared/page-sections";
 import { galleryPhotos, photos } from "@/data/photos";
 
 export default function About() {
   useDocumentTitle("About Stefan Oswald | Orlando Magician & Emcee", {
     description:
-      "Stefan Oswald is an Orlando-based magician and emcee with thousands of shows in 43 countries, an America's Got Talent appearance, and 1,000+ five-star reviews. His job: the room.",
+      "Stefan Oswald is an Orlando-based magician and emcee with more than 3,000 live shows in 43 countries, an America's Got Talent appearance, and 1,000+ five-star reviews. His job: the room.",
     path: "/about",
   });
 
@@ -20,9 +21,9 @@ export default function About() {
           <div className="grid items-center gap-12 md:grid-cols-2">
             <div>
               <img
-                src={photos.portrait.src}
-                alt={photos.portrait.alt}
-                className="aspect-[3/4] w-full border border-border object-cover"
+                src={photos.portraitCards.src}
+                alt={photos.portraitCards.alt}
+                className="aspect-[4/5] w-full border border-border object-cover"
               />
             </div>
             <div>
@@ -34,9 +35,9 @@ export default function About() {
               </h1>
               <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
                 <p>
-                  I'm Stefan Oswald, an Orlando-based magician and emcee. I've performed thousands of shows in 43
-                  countries, stood on the America's Got Talent stage, and appeared on FOX, NBC, and ABC. Live audiences
-                  have left me more than 1,000 five-star reviews.
+                  I'm Stefan Oswald, an Orlando-based magician and emcee. I've performed more than 3,000 live shows in
+                  43 countries, stood on the America's Got Talent stage, and appeared on FOX, NBC, CBS, and ABC, plus the
+                  reality series The Blox. Live audiences have left me more than 1,000 five-star reviews.
                 </p>
                 <p>
                   But the thing clients thank me for most isn't a trick. It's what happens to the room. People drop
@@ -65,7 +66,7 @@ export default function About() {
 
       <section className="bg-card py-24">
         <div className="container mx-auto max-w-6xl px-4 md:px-6">
-          <SectionHeading eyebrow="THE JOURNEY" title="What thousands of shows taught me" />
+          <SectionHeading eyebrow="THE JOURNEY" title="What 3,000 shows taught me" />
 
           <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
             <div className="order-2 md:order-1">
@@ -78,9 +79,9 @@ export default function About() {
             </div>
             <div className="order-1 md:order-2">
               <img
-                src={photos.stageLevitation.src}
-                alt={photos.stageLevitation.alt}
-                className="aspect-[3/2] w-full border border-border object-cover object-[50%_20%]"
+                src={photos.cupsAndBalls.src}
+                alt={photos.cupsAndBalls.alt}
+                className="aspect-[3/2] w-full border border-border object-cover"
                 loading="lazy"
               />
             </div>
@@ -89,8 +90,8 @@ export default function About() {
           <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
             <div>
               <img
-                src={photos.outdoorLevitation.src}
-                alt={photos.outdoorLevitation.alt}
+                src={photos.agtStage.src}
+                alt={photos.agtStage.alt}
                 className="aspect-[3/2] w-full border border-border object-cover"
                 loading="lazy"
               />
@@ -98,9 +99,10 @@ export default function About() {
             <div>
               <h3 className="mb-4 font-serif text-2xl text-foreground">Big stages, small rooms</h3>
               <p className="leading-relaxed text-muted-foreground">
-                I've performed on the America's Got Talent stage, on stage in Las Vegas, and live on FOX 35 in
-                Orlando. I've also worked trade show booths, company parties, and cocktail hours. The room changes.
-                The goal doesn't: entertainment shouldn't be an afterthought. It should help your event do its job.
+                I've performed on the America's Got Talent stage, on stage in Las Vegas, live on FOX 35 in Orlando,
+                and on the reality series The Blox. I've also worked trade show booths, company parties, and cocktail
+                hours. The room changes. The goal doesn't: entertainment shouldn't be an afterthought. It should help
+                your event do its job.
               </p>
             </div>
           </div>
@@ -122,9 +124,9 @@ export default function About() {
             </div>
             <div className="order-1 md:order-2">
               <img
-                src={photos.closeUpCube.src}
-                alt={photos.closeUpCube.alt}
-                className="aspect-[3/2] w-full border border-border object-cover object-[50%_35%]"
+                src={photos.magicMansion.src}
+                alt={photos.magicMansion.alt}
+                className="aspect-[3/2] w-full border border-border object-cover"
                 loading="lazy"
               />
             </div>
@@ -132,7 +134,9 @@ export default function About() {
         </div>
       </section>
 
-      <section className="border-t border-border bg-background py-24">
+      <ClientMarquee />
+
+      <section className="bg-background py-24">
         <div className="container mx-auto max-w-6xl px-4 md:px-6">
           <SectionHeading eyebrow="GALLERY" title="Behind the magic" className="mb-12" />
           <PhotoGallery items={galleryPhotos} />

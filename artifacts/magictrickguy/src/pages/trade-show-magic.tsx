@@ -3,10 +3,12 @@ import { pickFaqs, testimonials } from "@/data/content";
 import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
 import { ProofStrip } from "@/components/shared/proof-strip";
+import { ClientMarquee } from "@/components/shared/client-marquee";
 import {
   FaqSection,
   FeatureGrid,
   PageCta,
+  PhotoRow,
   ProcessSteps,
   PullQuote,
   SectionHeading,
@@ -40,11 +42,12 @@ export default function TradeShowMagic() {
           </>
         }
         ctaLabel="TELL ME ABOUT YOUR SHOW"
-        photo={photos.closeUpCube}
-        imageClassName="aspect-[4/5] max-h-[560px] object-[50%_40%]"
+        photo={photos.boothCrowd}
+        imageClassName="aspect-[4/5] max-h-[600px]"
       />
 
       <ProofStrip className="border-t-0" />
+      <ClientMarquee />
 
       <FeatureGrid
         eyebrow="WHAT YOUR BOOTH GETS"
@@ -71,6 +74,14 @@ export default function TradeShowMagic() {
       />
 
       <PullQuote>The magic earns attention. Your business goal decides what we do with it.</PullQuote>
+
+      <PhotoRow
+        items={[
+          { ...photos.cardRevealCrowd, ratio: 0.8 },
+          { ...photos.boothLaughing, ratio: 0.8 },
+          { ...photos.demoDayReaction, ratio: 0.8 },
+        ]}
+      />
 
       <ProcessSteps
         eyebrow="THE PROCESS"

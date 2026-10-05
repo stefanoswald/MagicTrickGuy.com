@@ -90,6 +90,7 @@ export function ServiceHero({
               src={photo.src}
               alt={photo.alt}
               className={cn("aspect-[3/2] w-full border border-border object-cover", imageClassName)}
+              style={{ objectPosition: photo.focus }}
             />
           </div>
         </div>
@@ -138,29 +139,88 @@ export function ProcessSteps({
   title,
   steps,
   id,
+  photo,
 }: {
   eyebrow?: string;
   title: ReactNode;
   steps: Step[];
   id?: string;
+  /** Optional portrait (4:5) shown beside the steps on large screens. */
+  photo?: Photo;
 }) {
+  const list = (
+    <ol className="space-y-6">
+      {steps.map((item, i) => (
+        <li key={item.title} className="flex items-start gap-6 border border-border bg-background p-6 md:p-8">
+          <span className="font-accent text-3xl text-primary/60" aria-hidden="true">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <div>
+            <h3 className="mb-2 font-serif text-xl text-foreground md:text-2xl">{item.title}</h3>
+            <p className="leading-relaxed text-muted-foreground">{item.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+
   return (
     <section id={id} className="scroll-mt-24 border-y border-border bg-card py-24">
-      <div className="container mx-auto max-w-5xl px-4 md:px-6">
+      <div className={cn("container mx-auto px-4 md:px-6", photo ? "max-w-6xl" : "max-w-5xl")}>
         <SectionHeading eyebrow={eyebrow} title={title} />
-        <ol className="space-y-6">
-          {steps.map((item, i) => (
-            <li key={item.title} className="flex items-start gap-6 border border-border bg-background p-6 md:p-8">
-              <span className="font-accent text-3xl text-primary/60" aria-hidden="true">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="mb-2 font-serif text-xl text-foreground md:text-2xl">{item.title}</h3>
-                <p className="leading-relaxed text-muted-foreground">{item.desc}</p>
-              </div>
-            </li>
+        {photo ? (
+          <div className="grid items-center gap-10 lg:grid-cols-[2fr_3fr]">
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              decoding="async"
+              className="hidden aspect-[4/5] w-full border border-border object-cover lg:block"
+              style={{ objectPosition: photo.focus }}
+            />
+            {list}
+          </div>
+        ) : (
+          list
+        )}
+      </div>
+    </section>
+  );
+}
+
+export type RowPhoto = Photo & {
+  /** width / height of the photo, e.g. 0.8 for 4:5 or 16 / 9 */
+  ratio: number;
+  caption?: ReactNode;
+};
+
+/**
+ * A row of photos at equal height on desktop (columns sized by aspect ratio).
+ * On phones it becomes a two-column mosaic; wide shots span both columns.
+ */
+export function PhotoRow({ items, className }: { items: RowPhoto[]; className?: string }) {
+  const cols = items.map((p) => `${p.ratio}fr`).join(" ");
+  return (
+    <section className={cn("bg-background py-12 md:py-16", className)}>
+      <div className="container mx-auto max-w-6xl px-4 md:px-6">
+        <div
+          className="grid grid-cols-2 gap-3 md:gap-4 md:[grid-template-columns:var(--row-cols)]"
+          style={{ ["--row-cols" as string]: cols }}
+        >
+          {items.map((p) => (
+            <figure key={p.src} className={cn(p.ratio > 1 && "col-span-2 md:col-span-1")}>
+              <img
+                src={p.src}
+                alt={p.alt}
+                loading="lazy"
+                decoding="async"
+                className="w-full border border-border object-cover"
+                style={{ aspectRatio: String(p.ratio), objectPosition: p.focus }}
+              />
+              {p.caption && <figcaption className="mt-3 text-sm text-muted-foreground">{p.caption}</figcaption>}
+            </figure>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
   );

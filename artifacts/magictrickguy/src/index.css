@@ -151,3 +151,36 @@
     font-family: var(--font-accent);
   }
 }
+
+/* Past clients marquee: logos drift left to right, pause on hover, and sit still for reduced motion. */
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee-right 55s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-static {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    display: none;
+  }
+  .marquee-static {
+    display: flex;
+  }
+}

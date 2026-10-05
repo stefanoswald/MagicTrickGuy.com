@@ -3,10 +3,12 @@ import { pickFaqs, testimonials } from "@/data/content";
 import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
 import { ProofStrip } from "@/components/shared/proof-strip";
+import { ClientMarquee } from "@/components/shared/client-marquee";
 import {
   FaqSection,
   FeatureGrid,
   PageCta,
+  PhotoRow,
   SectionHeading,
   ServiceHero,
 } from "@/components/shared/page-sections";
@@ -53,10 +55,11 @@ export default function PrivateEvents() {
           </>
         }
         ctaLabel="TELL ME WHAT YOU'RE CELEBRATING"
-        photo={photos.outdoorLevitation}
+        photo={photos.privateClapping}
       />
 
       <ProofStrip className="border-t-0" />
+      <ClientMarquee />
 
       <FeatureGrid
         eyebrow="WHAT YOUR GUESTS GET"
@@ -74,6 +77,14 @@ export default function PrivateEvents() {
             title: "A story they'll retell",
             desc: "The next morning, people are still trying to figure out what happened. That's the story they'll tell about your party.",
           },
+        ]}
+      />
+
+      <PhotoRow
+        className="pt-0 md:pt-0"
+        items={[
+          { ...photos.privateCloseUp, ratio: 16 / 9 },
+          { ...photos.holidayStage, ratio: 16 / 9 },
         ]}
       />
 

@@ -5,10 +5,12 @@ import { faqs, testimonials } from "@/data/content";
 import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
 import { ProofStrip } from "@/components/shared/proof-strip";
+import { ClientMarquee } from "@/components/shared/client-marquee";
 import {
   FaqSection,
   FeatureGrid,
   PageCta,
+  PhotoRow,
   ProcessSteps,
   PullQuote,
   SectionHeading,
@@ -65,10 +67,12 @@ export default function CorporateMagic() {
           </>
         }
         ctaLabel="TELL ME ABOUT YOUR EVENT"
-        photo={photos.corporateCloseUp}
+        photo={photos.hangarGuestAmazed}
+        imageClassName="aspect-[4/5] max-h-[600px]"
       />
 
       <ProofStrip className="border-t-0" />
+      <ClientMarquee />
 
       <FeatureGrid
         eyebrow="WHAT CHANGES IN THE ROOM"
@@ -86,6 +90,14 @@ export default function CorporateMagic() {
             title: "It feels like your event",
             desc: "Clean, sharp humor tailored to your industry. I can work in your theme, your company message, inside jokes, or VIPs, so it feels made for this room.",
           },
+        ]}
+      />
+
+      <PhotoRow
+        className="pt-0 md:pt-0"
+        items={[
+          { ...photos.hangarGuestSmiling, ratio: 0.8 },
+          { ...photos.roomLaughing, ratio: 16 / 9 },
         ]}
       />
 

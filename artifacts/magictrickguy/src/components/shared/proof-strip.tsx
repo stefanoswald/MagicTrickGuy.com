@@ -28,7 +28,7 @@ export function ProofStrip({ className }: { className?: string }) {
               </div>
             ))}
             <div className="flex flex-col-reverse">
-              <dt className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">Clients include</dt>
+              <dt className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">Past clients</dt>
               <dd className="font-serif text-2xl leading-9 text-foreground">{proof.clients.join(" · ")}</dd>
             </div>
           </dl>
