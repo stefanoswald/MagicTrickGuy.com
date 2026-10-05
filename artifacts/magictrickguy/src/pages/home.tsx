@@ -60,8 +60,8 @@ const worries = [
   },
   {
     worry: "I don't have time to manage one more vendor.",
-    lead: "No babysitting required.",
-    relief: "I arrive early, sync with your AV team, and take care of my own details.",
+    lead: "You're in excellent hands.",
+    relief: "I arrive early, sync with your AV team, and take care of every detail on my end, so you can focus on everything else.",
   },
   {
     worry: "We'll spend the money and nobody will remember it.",
@@ -91,7 +91,7 @@ export default function Home() {
     },
     {
       value: "America's Got Talent & network TV",
-      desc: "FOX, NBC, CBS, ABC, and the reality series The Blox. Live TV has no second takes. Your event is in steady hands.",
+      desc: "FOX, NBC, CBS, ABC, and the reality series The Blox. Live TV has no second takes, and neither does your event. I'm used to getting it right the first time.",
     },
     {
       value: `${proof.reviews} five-star reviews`,
@@ -261,11 +261,12 @@ export default function Home() {
             </div>
             <div>
               <img
-                src={photos.partyGuestSmiling.src}
-                alt={photos.partyGuestSmiling.alt}
+                src={photos.privateCloseUp.src}
+                alt={photos.privateCloseUp.alt}
                 loading="lazy"
                 decoding="async"
-                className="aspect-[4/5] w-full border border-border object-cover"
+                className="aspect-[4/3] w-full border border-border object-cover"
+                style={{ objectPosition: "42% 50%" }}
               />
             </div>
           </div>

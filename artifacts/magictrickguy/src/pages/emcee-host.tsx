@@ -166,7 +166,7 @@ export default function EmceeHost() {
         </section>
       )}
 
-      <FaqSection items={pickFaqs(["emcee", "changes", "babysit", "clean", "booking"])} />
+      <FaqSection items={pickFaqs(["emcee", "changes", "manage", "clean", "booking"])} />
 
       <PageCta
         title="Let's keep your program on track"

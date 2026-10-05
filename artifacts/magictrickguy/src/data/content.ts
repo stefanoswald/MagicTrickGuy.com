@@ -62,32 +62,34 @@ export const proof = {
   shows: "3,000+",
   countries: "43",
   reviews: "1,000+",
-  clients: ["Dell", "IBM", "HP"],
+  clients: ["Amazon", "IBM", "Google"],
 };
 
 /**
  * Past clients, shown as a scrolling logo marquee. Logos were taken from each organization's
- * current website or brand page (Oct 2026). `height` balances visual weight between wide
- * wordmarks and square badges.
+ * current website or brand page (Oct 2026). `height` is the display height on desktop and
+ * balances visual weight between wide wordmarks and square badges. `width` and
+ * `intrinsicHeight` are the logo file's own pixel size, so the browser can lay out the
+ * marquee before the files arrive.
  */
-export type Client = { name: string; logo: string; height: number };
+export type Client = { name: string; logo: string; height: number; width: number; intrinsicHeight: number };
 
 export const clients: Client[] = [
-  { name: "Dell Technologies", logo: "/images/clients/dell.webp", height: 30 },
-  { name: "Amazon", logo: "/images/clients/amazon.webp", height: 40 },
-  { name: "The Great Magic Hall", logo: "/images/clients/the-great-magic-hall.webp", height: 38 },
-  { name: "Google", logo: "/images/clients/google.webp", height: 40 },
-  { name: "American Red Cross", logo: "/images/clients/red-cross.webp", height: 42 },
-  { name: "IBM", logo: "/images/clients/ibm.webp", height: 40 },
-  { name: "Salty Sam's Pirate Cruise", logo: "/images/clients/salty-sams-pirate-cruise.webp", height: 50 },
-  { name: "Apple", logo: "/images/clients/apple.webp", height: 48 },
-  { name: "Goodwill", logo: "/images/clients/goodwill.webp", height: 56 },
-  { name: "Facebook", logo: "/images/clients/facebook.webp", height: 32 },
-  { name: "Give Kids The World Village", logo: "/images/clients/give-kids-the-world.webp", height: 60 },
-  { name: "HP", logo: "/images/clients/hp.webp", height: 48 },
-  { name: "PGA of America", logo: "/images/clients/pga-of-america.webp", height: 56 },
-  { name: "Hexco Global", logo: "/images/clients/hexco-global.webp", height: 34 },
-  { name: "Collier County Public Schools", logo: "/images/clients/collier-county-public-schools.webp", height: 38 },
+  { name: "Dell Technologies", logo: "/images/clients/dell.webp", height: 30, width: 600, intrinsicHeight: 109 },
+  { name: "Amazon", logo: "/images/clients/amazon.webp", height: 40, width: 440, intrinsicHeight: 150 },
+  { name: "The Great Magic Hall", logo: "/images/clients/the-great-magic-hall.webp", height: 38, width: 553, intrinsicHeight: 150 },
+  { name: "Google", logo: "/images/clients/google.webp", height: 40, width: 407, intrinsicHeight: 150 },
+  { name: "American Red Cross", logo: "/images/clients/red-cross.webp", height: 42, width: 404, intrinsicHeight: 150 },
+  { name: "IBM", logo: "/images/clients/ibm.webp", height: 40, width: 347, intrinsicHeight: 150 },
+  { name: "Salty Sam's Pirate Cruise", logo: "/images/clients/salty-sams-pirate-cruise.webp", height: 50, width: 322, intrinsicHeight: 150 },
+  { name: "Apple", logo: "/images/clients/apple.webp", height: 48, width: 124, intrinsicHeight: 150 },
+  { name: "Goodwill", logo: "/images/clients/goodwill.webp", height: 56, width: 108, intrinsicHeight: 150 },
+  { name: "Facebook", logo: "/images/clients/facebook.webp", height: 32, width: 600, intrinsicHeight: 134 },
+  { name: "Give Kids The World Village", logo: "/images/clients/give-kids-the-world.webp", height: 60, width: 210, intrinsicHeight: 150 },
+  { name: "HP", logo: "/images/clients/hp.webp", height: 48, width: 150, intrinsicHeight: 150 },
+  { name: "PGA of America", logo: "/images/clients/pga-of-america.webp", height: 56, width: 165, intrinsicHeight: 150 },
+  { name: "Hexco Global", logo: "/images/clients/hexco-global.webp", height: 34, width: 600, intrinsicHeight: 146 },
+  { name: "Collier County Public Schools", logo: "/images/clients/collier-county-public-schools.webp", height: 38, width: 542, intrinsicHeight: 150 },
 ];
 
 export const contact = {
@@ -256,7 +258,7 @@ export const faqs: Faq[] = [
     answer: "For prime dates (especially November and December holidays and spring conference season), 3 to 6 months ahead is best. Last-minute dates do open up, so it's always worth asking."
   },
   {
-    id: "babysit",
+    id: "manage",
     question: "How much will we have to manage you?",
     answer: "Very little. I arrive early, coordinate with your AV team and venue, and take care of my own details. My goal is to be one less thing on your list, not one more."
   },

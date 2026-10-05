@@ -111,7 +111,7 @@ export default function TradeShowMagic() {
         </div>
       </section>
 
-      <FaqSection items={pickFaqs(["message", "babysit", "travel", "tech", "booking"])} />
+      <FaqSection items={pickFaqs(["message", "manage", "travel", "tech", "booking"])} />
 
       <PageCta
         title="Let's fill your booth"

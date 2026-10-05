@@ -142,7 +142,7 @@ export default function CorporateMagic() {
           },
           {
             title: "You enjoy your own event",
-            desc: "I arrive early, coordinate with your AV team, and take care of the room. No babysitting required.",
+            desc: "I arrive early, coordinate with your AV team, and take care of the room. All you have to do is enjoy it.",
           },
         ]}
       />

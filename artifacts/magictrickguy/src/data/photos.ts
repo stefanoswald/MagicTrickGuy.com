@@ -31,7 +31,6 @@ export const photos = {
   listening: { src: "/images/stefan-oswald-listening.webp", alt: "Stefan Oswald listening to a guest before a performance" },
   cube: { src: "/images/close-up-magic-rubiks-cube.webp", alt: "Magician Stefan Oswald holding a Rubik's Cube during close-up magic" },
   demoDayAmazed: { src: "/images/demo-day-guest-amazed.webp", alt: "A guest laughing in disbelief at PGA Show Demo Day while a camera crew films" },
-  partyGuestSmiling: { src: "/images/corporate-party-guest-smiling.webp", alt: "A smiling guest at a lively corporate party in a jet hangar" },
   agtStage: { src: "/images/americas-got-talent-stage.webp", alt: "Stefan Oswald on the America's Got Talent stage" }, // 16:9
   holidayStage: { src: "/images/holiday-stage-show.webp", alt: "Stefan Oswald performing on a holiday event stage at a JW Marriott" }, // 16:9
   portrait: { src: "/images/stefan-oswald-portrait.webp", alt: "Stefan Oswald, Orlando magician and emcee", focus: "50% 35%" },
