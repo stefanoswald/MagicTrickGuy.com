@@ -34,7 +34,7 @@ const formSchema = z.object({
   location: z.string().optional(),
   guests: z.string().optional(),
   budget: z.string().optional(),
-  message: z.string().min(10, "Please provide some details about your event"),
+  message: z.string().min(10, "Tell me a little about your event and what you're hoping for"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -80,7 +80,7 @@ export function BookingForm() {
           Location: data.location || "-",
           "Guest Count": data.guests || "-",
           Budget: data.budget || "-",
-          Message: data.message,
+          "What success looks like": data.message,
         }),
       });
       const json = await res.json().catch(() => ({}));
@@ -88,8 +88,8 @@ export function BookingForm() {
         throw new Error(json.message || "Submission failed");
       }
       toast({
-        title: "Inquiry Sent Successfully",
-        description: "Thank you! Stefan will get back to you within 24 hours.",
+        title: "Got it, thank you!",
+        description: "I'll get back to you within 24 hours with ideas and availability.",
       });
       form.reset();
     } catch {
@@ -185,6 +185,7 @@ export function BookingForm() {
                   <SelectContent className="rounded-none border-border">
                     <SelectItem value="Corporate Event">Corporate Event</SelectItem>
                     <SelectItem value="Trade Show">Trade Show</SelectItem>
+                    <SelectItem value="Emcee / Host">Emcee / Host</SelectItem>
                     <SelectItem value="Keynote / Speaking">Keynote / Speaking</SelectItem>
                     <SelectItem value="Private Event">Private Event</SelectItem>
                     <SelectItem value="Other">Other</SelectItem>
@@ -251,10 +252,10 @@ export function BookingForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-muted-foreground uppercase text-xs tracking-widest font-accent">Tell us about your event *</FormLabel>
+              <FormLabel className="text-muted-foreground uppercase text-xs tracking-widest font-accent">What does success look like for your event? *</FormLabel>
               <FormControl>
-                <Textarea 
-                  placeholder="What kind of vibe are you going for? What's the goal of the event?" 
+                <Textarea
+                  placeholder="Who's coming, what's the occasion, and what would make you say &quot;that went great&quot;? More connection, more energy, a packed booth, a smooth program..."
                   className="bg-card/50 border-border rounded-none min-h-[120px] resize-y" 
                   {...field} 
                 />
@@ -265,7 +266,7 @@ export function BookingForm() {
         />
 
         <Button type="submit" size="lg" disabled={submitting} className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
-          {submitting ? "SENDING..." : "SUBMIT INQUIRY"}
+          {submitting ? "SENDING..." : "SEND IT TO STEFAN"}
         </Button>
       </form>
     </Form>

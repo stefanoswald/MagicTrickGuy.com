@@ -1,226 +1,332 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
-import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { BookingForm } from "@/components/shared/booking-form";
-import { services, testimonials, contact } from "@/data/content";
-import { YouTubeEmbed } from "@/components/shared/youtube-embed";
-import { Building, Presentation, Mic, Lightbulb, GlassWater, Megaphone, Star, CheckCircle, Quote } from "lucide-react";
 import { motion } from "framer-motion";
+import { ArrowRight, GlassWater, Megaphone, Mic, Presentation, Quote, Star, Users, Zap } from "lucide-react";
+import { BookingForm } from "@/components/shared/booking-form";
+import { PromoVideo } from "@/components/shared/promo-video";
+import { ProofStrip } from "@/components/shared/proof-strip";
+import { ProcessSteps, SectionHeading } from "@/components/shared/page-sections";
+import { outcomes, proof, testimonials } from "@/data/content";
+import { photos } from "@/data/photos";
 
 const iconMap: Record<string, React.ElementType> = {
-  Building,
+  Users,
+  Zap,
   Presentation,
-  Mic,
-  Lightbulb,
-  GlassWater,
   Megaphone,
+  Mic,
+  GlassWater,
 };
 
+/** What planners worry about, and how Stefan takes it off their plate. */
+const worries = [
+  {
+    worry: "Everyone's going to stay in their little groups.",
+    lead: "I start with the quiet tables.",
+    relief: "A little magic gives strangers something to share, and before long they're calling coworkers over to see.",
+  },
+  {
+    worry: "The energy is going to die after dinner.",
+    lead: "I keep the energy up.",
+    relief: "I read the room and change the pace when it needs it: a big laugh, a quick interactive moment, whatever brings people back.",
+  },
+  {
+    worry: "What if the material doesn't fit our crowd?",
+    lead: "Clean, classy, and right for your crowd.",
+    relief: "I tailor everything to your audience. Nobody gets embarrassed, including the boss.",
+  },
+  {
+    worry: "The schedule will change. Something technical will break.",
+    lead: "Very little rattles me.",
+    relief: "After thousands of live shows, I adjust in the moment and keep the room with me while things get sorted.",
+  },
+  {
+    worry: "I don't have time to manage one more vendor.",
+    lead: "No babysitting required.",
+    relief: "I arrive early, sync with your AV team, and take care of my own details.",
+  },
+  {
+    worry: "We'll spend the money and nobody will remember it.",
+    lead: "People leave with a story.",
+    relief: "They retell it for weeks. And when they tell you what a great event it was, you get to take the credit.",
+  },
+];
+
 export default function Home() {
-  useDocumentTitle("Orlando Magician & Corporate Entertainer");
+  useDocumentTitle("Stefan Oswald | Orlando Magician & Emcee for Corporate Events", {
+    description:
+      "Orlando corporate magician and emcee Stefan Oswald builds the entertainment around your event's goals: connection, energy, booth traffic, and a program that runs smoothly.",
+    path: "/",
+  });
+
+  const featured = testimonials.find((t) => t.eventType === "Corporate");
   const mediaQuotes = testimonials.filter((t) => t.eventType === "Media");
 
+  const trust = [
+    {
+      value: `${proof.shows} live shows`,
+      desc: "Thousands of performances taught me how to read a room, adapt quickly, and keep an event on track.",
+    },
+    {
+      value: `${proof.countries} countries`,
+      desc: "Different cultures, ages, and crowds. Whoever is in your room, I'll meet them where they are.",
+    },
+    {
+      value: "America's Got Talent, FOX, NBC & ABC",
+      desc: "Big stages and live TV, where there are no second takes. Your event is in steady hands.",
+    },
+    {
+      value: `${proof.reviews} five-star reviews`,
+      desc: "From real audiences who left happy. Clients include Dell, IBM, and HP.",
+    },
+  ];
+
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* 1. Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <div className="flex min-h-screen flex-col">
+      {/* 1. Hero: the planner's world first, the video right there */}
+      <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
         <img
-          src="/images/corporate-gala-stage.webp"
-          alt="Stefan Oswald performing a levitation for a ballroom audience"
-          className="absolute inset-0 z-0 h-full w-full object-cover"
+          src={photos.galaStage.src}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 z-0 h-full w-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/85 via-background/70 to-background" />
-        <div className="container relative z-20 mx-auto px-4 md:px-6 text-center max-w-4xl pt-20">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-tight mb-6"
-          >
-            Magic That Makes Your Event <span className="text-primary italic">Impossible To Forget</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed"
-          >
-            Stefan Oswald blends world-class sleight of hand, comedy, storytelling, and audience interaction to create moments your guests will talk about long after the event ends.
-          </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link href="/contact">
-              <Button size="lg" className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
-                BOOK STEFAN
-              </Button>
-            </Link>
-            <Link href="/videos">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-foreground/20 text-foreground hover:bg-foreground/5 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
-                WATCH VIDEO
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/90 via-background/85 to-background" />
+        <div className="container relative z-20 mx-auto max-w-7xl px-4 md:px-6">
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <h1 className="font-serif font-bold leading-tight text-foreground">
+                <span className="mb-5 block font-accent text-xs font-normal tracking-widest text-primary md:text-sm">
+                  ORLANDO CORPORATE MAGICIAN &amp; EMCEE
+                </span>
+                <span className="block text-4xl md:text-6xl">
+                  You plan the event. <span className="italic text-primary">I'll bring the room together.</span>
+                </span>
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/80 md:text-xl">
+                You've put a lot into this event. The entertainment should help it succeed, not give you one more
+                thing to worry about. I build what I do around what you want your guests to feel, do, and remember.
+              </p>
+              <a
+                href="#how-it-works"
+                className="mt-6 hidden items-center text-sm font-medium uppercase tracking-wide text-foreground/80 transition-colors hover:text-primary lg:inline-flex"
+              >
+                See how it works <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </motion.div>
 
-      {/* 2. Credibility Bar */}
-      <section className="border-b border-border bg-card">
-        <div className="container mx-auto px-4 md:px-6 py-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12 text-center md:text-left">
-            <div>
-              <p className="font-accent tracking-widest text-sm text-primary mb-2">AS SEEN ON FOX, NBC &amp; ABC</p>
-              <p className="text-muted-foreground text-sm">Corporate Events • Trade Shows • Keynotes • Private Events</p>
-            </div>
-            <div className="flex gap-8 text-center">
-              <div>
-                <p className="text-3xl font-serif text-foreground">1,000+</p>
-                <p className="text-xs tracking-wider text-muted-foreground uppercase mt-1">Five-Star Reviews</p>
-              </div>
-              <div>
-                <p className="text-3xl font-serif text-foreground">15+</p>
-                <p className="text-xs tracking-wider text-muted-foreground uppercase mt-1">Years Performing</p>
-              </div>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {mediaQuotes.map((t) => (
-              <figure key={t.id} className="flex gap-4 items-start border border-border bg-background/40 p-6">
-                <Quote className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <blockquote className="font-serif text-2xl italic text-foreground leading-snug">"{t.quote}"</blockquote>
-                  <figcaption className="mt-3 font-accent text-xs tracking-widest uppercase text-muted-foreground">
-                    {t.name}, {t.company}
-                  </figcaption>
-                </div>
-              </figure>
-            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+            >
+              <PromoVideo />
+              <p className="mt-3 text-center text-sm text-muted-foreground">
+                I reply within 24 hours with ideas and availability.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 3. Services Cards */}
-      <section className="py-24 bg-background relative">
-        <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">EXPERIENCES</h2>
-            <h3 className="text-3xl md:text-5xl font-serif text-foreground mb-6">Tailored For Your Audience</h3>
-            <p className="text-muted-foreground text-lg">From intimate VIP dinners to conference keynotes, Stefan adapts his performance to fit your exact needs.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => {
-              const Icon = iconMap[service.icon] || Star;
+      {/* 2. Proof, as reassurance */}
+      <ProofStrip />
+
+      {/* 3. Outcomes before services */}
+      <section className="bg-background py-24">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6">
+          <SectionHeading
+            eyebrow="WHAT DOES A WIN LOOK LIKE?"
+            title="Tell me what success looks like. I'll build around it."
+            intro="Great event entertainment starts with your goal, not a list of tricks. Here are the goals I hear most often."
+          />
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {outcomes.map((o, index) => {
+              const Icon = iconMap[o.icon] || Star;
               return (
                 <motion.div
-                  key={service.id}
+                  key={o.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
                 >
-                  <Link href={service.href}>
-                    <div className="group h-full p-8 bg-card border border-border hover:border-primary transition-all duration-300 flex flex-col cursor-pointer">
-                      <Icon className="w-8 h-8 text-primary mb-6 group-hover:scale-110 transition-transform duration-300" />
-                      <h4 className="text-xl font-serif text-foreground mb-3">{service.title}</h4>
-                      <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
-                      <div className="flex items-center text-sm font-medium tracking-wide text-foreground group-hover:text-primary transition-colors mt-auto uppercase">
-                        Learn More <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                      </div>
-                    </div>
+                  <Link
+                    href={o.href}
+                    className="group flex h-full flex-col border border-border bg-card p-8 transition-all duration-300 hover:border-primary"
+                  >
+                    <Icon className="mb-6 h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-110" />
+                    <h3 className="mb-3 font-serif text-2xl text-foreground">{o.title}</h3>
+                    <p className="mb-6 flex-grow text-muted-foreground">{o.description}</p>
+                    <span className="mt-auto flex items-center text-sm font-medium uppercase tracking-wide text-foreground transition-colors group-hover:text-primary">
+                      {o.linkLabel}
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
                   </Link>
                 </motion.div>
               );
             })}
           </div>
+          <p className="mt-12 text-center text-lg text-muted-foreground">
+            Not sure which fits?{" "}
+            <Link href="/contact" className="text-foreground underline decoration-primary underline-offset-4 hover:text-primary">
+              That's what our first conversation is for.
+            </Link>
+          </p>
         </div>
       </section>
 
-      {/* 4. Signature Video Section */}
-      <section className="py-24 bg-card border-y border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-5xl text-center">
-          <h2 className="font-accent tracking-widest text-sm text-primary mb-4">SEE IT IN ACTION</h2>
-          <h3 className="text-3xl md:text-5xl font-serif text-foreground mb-12">The Difference Is In The Details</h3>
-          <YouTubeEmbed
-            videoId={contact.showreelYouTubeId}
-            title="Stefan Oswald, Magician"
-            className="rounded-lg shadow-2xl mb-12 border border-border"
+      {/* 4. Planner worries, answered quickly */}
+      <section className="border-y border-border bg-card py-24">
+        <div className="container mx-auto max-w-5xl px-4 md:px-6">
+          <SectionHeading
+            eyebrow="ONE LESS THING TO WORRY ABOUT"
+            title="The stuff planners worry about? I've got it covered."
+            intro="You're the one people ask about the event on Monday. Here's how I take the usual worries off your plate."
           />
-          <Link href="/videos">
-            <Button variant="outline" className="border-foreground/20 text-foreground hover:bg-foreground/5 rounded-none px-8 tracking-wide">
-              VIEW MORE VIDEOS
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* 5. Why Book Stefan */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE ADVANTAGE</h2>
-            <h3 className="text-3xl md:text-5xl font-serif text-foreground">Why Event Planners Choose Stefan</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-            {[
-              { title: "Funny & Professional", desc: "Corporate-clean humor that genuinely gets laughs without ever making anyone uncomfortable." },
-              { title: "Fully Interactive", desc: "Guests aren't just watching a show; they are the stars of the show." },
-              { title: "Easy to Work With", desc: "Low maintenance, highly communicative, and zero diva behavior." },
-              { title: "Meaningful Message", desc: "Magic with a purpose. He can weave your core company message into the illusions." },
-              { title: "Memorable Moments", desc: "Creating those 'did you see that?' moments that people talk about at the water cooler." },
-              { title: "Highly Versatile", desc: "Equally comfortable performing for 10 VIPs or 1,000 conference attendees." }
-            ].map((pillar, i) => (
-              <div key={i} className="flex gap-4">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="text-xl font-serif text-foreground mb-2">{pillar.title}</h4>
-                  <p className="text-muted-foreground">{pillar.desc}</p>
-                </div>
+          <div className="divide-y divide-border border-y border-border">
+            {worries.map((w) => (
+              <div key={w.lead} className="grid gap-3 py-7 md:grid-cols-[2fr_3fr] md:gap-10">
+                <p className="font-serif text-xl italic text-foreground/70 md:text-2xl">“{w.worry}”</p>
+                <p className="leading-relaxed text-muted-foreground">
+                  <span className="font-medium text-foreground">{w.lead}</span> {w.relief}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 6. Masterminds Feature */}
-      <section className="py-32 bg-secondary border-y border-border relative overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* 5. What happens to the room */}
+      <section className="bg-background py-24">
+        <div className="container mx-auto max-w-6xl px-4 md:px-6">
+          <div className="grid items-center gap-12 md:grid-cols-2">
             <div>
-              <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE MAGIC MANSION</h2>
-              <h3 className="text-4xl md:text-5xl font-serif text-foreground mb-6">Where Performers Level Up</h3>
-              <p className="text-foreground/80 text-lg mb-8 leading-relaxed">
-                Stefan and his team host The Magic Mansion in Orlando: small-group, multi-day intensives where magicians and mentalists develop their acts alongside world-class mentors like Gregory Wilson, Banachek, and Kent Axell.
+              <p className="mb-4 font-accent text-sm tracking-widest text-primary">WHAT HAPPENS TO THE ROOM</p>
+              <h2 className="mb-6 font-serif text-3xl text-foreground md:text-5xl">Give me five minutes in a room.</h2>
+              <div className="space-y-5 text-lg leading-relaxed text-foreground/80">
+                <p>
+                  Sometimes the guests don't even know I'm a magician at first. I'm just another person at the party
+                  who happens to do things nobody can explain.
+                </p>
+                <p>
+                  Within five minutes, the energy shifts. People drop their guard. They laugh. They feel like a kid
+                  again. And they start talking to each other.
+                </p>
+                <p>
+                  That's why one client made my official title <span className="text-primary">CEO of Vibe</span>.
+                  It's still the best description of my job: make the room a happier place to be.
+                </p>
+              </div>
+              <p className="mt-8 border-l-2 border-primary pl-6 font-serif text-2xl italic text-foreground">
+                The magic is the tool. The room is the goal.
               </p>
-              <Link href="/masterminds">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 rounded-none tracking-wide h-12">
-                  EXPLORE THE MAGIC MANSION
-                </Button>
-              </Link>
             </div>
             <div>
               <img
-                src="/images/close-up-cube.webp"
-                alt="Stefan Oswald holding a Rubik's Cube mid-trick"
-                className="aspect-square w-full object-cover object-[50%_35%] border border-border"
+                src={photos.corporateCloseUp.src}
+                alt={photos.corporateCloseUp.alt}
                 loading="lazy"
+                className="aspect-[4/5] w-full border border-border object-cover md:aspect-[3/4]"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* 9. Final CTA + Booking Form */}
-      <section className="py-24 bg-background" id="book">
-        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">CHECK AVAILABILITY</h2>
-            <h3 className="text-3xl md:text-5xl font-serif text-foreground mb-6">Let's Make Your Event Unforgettable</h3>
-            <p className="text-muted-foreground text-lg">Fill out the form below and we will respond within 24 hours.</p>
+      {/* 6. How it works */}
+      <ProcessSteps
+        id="how-it-works"
+        title="Simple for you, from the first call to the last guest"
+        steps={[
+          {
+            title: "Tell me what a win looks like",
+            desc: "A quick call about your guests, your goals, and your schedule. More connection? More energy? A packed booth? A program that runs on time? We start there.",
+          },
+          {
+            title: "I build the entertainment around it",
+            desc: "I pick the format and material that fit your crowd: strolling close-up, a stage show, emceeing, or a mix. Want your theme, your product, or a few VIPs worked in? Done.",
+          },
+          {
+            title: "You enjoy your own event",
+            desc: "I arrive early, coordinate with your AV team, and take care of the room. You get to relax and watch your guests have a great time.",
+          },
+        ]}
+      />
+
+      {/* 7. Proof: can I trust him with my event? */}
+      <section className="bg-background py-24">
+        <div className="container mx-auto max-w-6xl px-4 md:px-6">
+          <SectionHeading
+            eyebrow="WHY PLANNERS TRUST ME"
+            title="You're putting your reputation on the line. Here's why you can relax."
+          />
+          <div className="mb-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {trust.map((t) => (
+              <div key={t.value} className="border border-border bg-card p-6">
+                <p className="mb-3 font-serif text-2xl leading-snug text-primary">{t.value}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
+              </div>
+            ))}
           </div>
-          <div className="bg-card p-6 md:p-10 border border-border">
+
+          <div className="grid gap-6 lg:grid-cols-5">
+            {featured && (
+              <figure className="border border-border bg-card p-8 md:p-10 lg:col-span-3">
+                <div className="mb-6 flex gap-1 text-primary" aria-label={`${featured.rating} out of 5 stars`}>
+                  {[...Array(featured.rating)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-current" />
+                  ))}
+                </div>
+                <blockquote className="font-serif text-xl italic leading-relaxed text-foreground md:text-2xl">
+                  "{featured.quote}"
+                </blockquote>
+                <figcaption className="mt-6">
+                  <span className="font-bold text-foreground">{featured.name}</span>
+                  {featured.company && <span className="text-muted-foreground">, {featured.company}</span>}
+                </figcaption>
+              </figure>
+            )}
+            <div className="flex flex-col gap-6 lg:col-span-2">
+              {mediaQuotes.map((t) => (
+                <figure key={t.id} className="flex flex-1 items-start gap-4 border border-border bg-card p-6">
+                  <Quote className="mt-1 h-6 w-6 flex-shrink-0 text-primary" />
+                  <div>
+                    <blockquote className="font-serif text-2xl italic leading-snug text-foreground">"{t.quote}"</blockquote>
+                    <figcaption className="mt-3 font-accent text-xs uppercase tracking-widest text-muted-foreground">
+                      {t.name}, {t.company}
+                    </figcaption>
+                  </div>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/testimonials"
+              className="inline-flex items-center text-sm font-medium uppercase tracking-wide text-foreground transition-colors hover:text-primary"
+            >
+              Read more reviews <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Let's talk */}
+      <section className="scroll-mt-24 border-t border-border bg-card py-24" id="book">
+        <div className="container mx-auto max-w-4xl px-4 md:px-6">
+          <SectionHeading
+            eyebrow="LET'S TALK"
+            title="Let's make your event a win"
+            intro="Tell me what you're planning and what success looks like. I'll reply within 24 hours with ideas and availability."
+            className="mb-12"
+          />
+          <div className="border border-border bg-background p-6 md:p-10">
             <BookingForm />
           </div>
         </div>

@@ -25,8 +25,8 @@ export function Header() {
   const navLinks = [
     { href: "/corporate-magic", label: "Corporate" },
     { href: "/trade-show-magic", label: "Trade Shows" },
+    { href: "/emcee-host", label: "Emcee" },
     { href: "/keynote-magic", label: "Keynote" },
-    { href: "/masterminds", label: "Masterminds" },
     { href: "/about", label: "About" },
     { href: "/videos", label: "Videos" },
   ];
@@ -64,11 +64,9 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:flex items-center">
-          <Link href="/contact">
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 rounded-none tracking-wide">
-              BOOK NOW
-            </Button>
-          </Link>
+          <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 rounded-none tracking-wide">
+            <Link href="/contact">LET'S TALK</Link>
+          </Button>
         </div>
 
         {/* Mobile Toggle */}
@@ -102,11 +100,9 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/contact" className="mt-4">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide text-lg h-14">
-                BOOK NOW
-              </Button>
-            </Link>
+            <Button asChild size="lg" className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide text-lg h-14">
+              <Link href="/contact">TELL ME ABOUT YOUR EVENT</Link>
+            </Button>
           </nav>
         </div>
       </div>

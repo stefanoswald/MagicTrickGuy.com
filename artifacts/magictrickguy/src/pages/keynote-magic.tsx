@@ -1,106 +1,95 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
-import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { faqs, testimonials } from "@/data/content";
+import { pickFaqs, testimonials } from "@/data/content";
 import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
+import { ProofStrip } from "@/components/shared/proof-strip";
+import {
+  FaqSection,
+  FeatureGrid,
+  PageCta,
+  ProcessSteps,
+  SectionHeading,
+  ServiceHero,
+} from "@/components/shared/page-sections";
 
 export default function KeynoteMagic() {
-  useDocumentTitle("Keynote Magic | Stefan Oswald");
+  useDocumentTitle("Keynote Speaker & Magician", {
+    description:
+      "A keynote your audience actually remembers. Stefan Oswald uses interactive magic to make your conference theme visual, so the message sticks long after the slides are forgotten.",
+    path: "/keynote-magic",
+  });
 
   const mediaQuotes = testimonials.filter((t) => t.eventType === "Media");
 
   return (
-    <div className="flex flex-col min-h-screen pt-24">
-      <section className="py-20 bg-card border-b border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground leading-tight mb-6">
-                Keynote Magic
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                A customized presentation blending world-class magic with your company's core message. Inspire your team while blowing their minds.
-              </p>
-              <Link href="/contact">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 rounded-none tracking-wide h-14">
-                  DISCUSS YOUR EVENT
-                </Button>
-              </Link>
-            </div>
-            <div>
-              <img
-                src={photos.keynote.src}
-                alt={photos.keynote.alt}
-                className="aspect-[3/2] w-full object-cover border border-border"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="flex min-h-screen flex-col pt-24">
+      <ServiceHero
+        eyebrow="KEYNOTES"
+        title="A keynote your audience actually remembers"
+        intro={
+          <>
+            <p>
+              You need a message that lands and an audience that's awake for it. Not another talk people half-watch
+              while checking email.
+            </p>
+            <p>
+              I build a custom presentation around your theme and use interactive magic to make the idea visual, so
+              it sticks long after the slides are forgotten.
+            </p>
+          </>
+        }
+        ctaLabel="TELL ME ABOUT YOUR AUDIENCE"
+        photo={photos.keynote}
+      />
 
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE IMPACT</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">A Presentation They Won't Forget</h3>
-          </div>
-          <div className="grid md:grid-cols-3 gap-12">
-            <div>
-              <h4 className="text-xl font-serif text-foreground mb-4">Unprecedented Engagement</h4>
-              <p className="text-muted-foreground">Standard keynotes can be dry. Stefan uses interactive magic to instantly hook the audience and keep their attention dialed in for the entire presentation.</p>
-            </div>
-            <div>
-              <h4 className="text-xl font-serif text-foreground mb-4">Visual Metaphors</h4>
-              <p className="text-muted-foreground">Abstract concepts like 'innovation', 'trust', or 'perspective' are brought to life visually through impossible illusions, making the message stick.</p>
-            </div>
-            <div>
-              <h4 className="text-xl font-serif text-foreground mb-4">Powerful Takeaways</h4>
-              <p className="text-muted-foreground">The magic isn't just for show. It serves to underline actionable takeaways that the audience can apply to their work and life immediately.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProofStrip className="border-t-0" />
 
-      {/* How It Works */}
-      <section className="py-24 bg-card border-y border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE PROCESS</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">Crafting Your Keynote</h3>
-          </div>
-          <div className="space-y-8">
-            {[
-              { step: "01", title: "Theme Alignment", desc: "We identify the overarching theme of your conference and the specific takeaways you want the audience to leave with." },
-              { step: "02", title: "Script Integration", desc: "Stefan writes a custom presentation that seamlessly blends your messaging with relevant, high-impact magic routines." },
-              { step: "03", title: "The Delivery", desc: "An energetic, polished, and unforgettable 45-60 minute presentation that sets the tone for your entire event." }
-            ].map((item, i) => (
-              <div key={i} className="flex gap-6 items-start bg-background p-8 border border-border">
-                <div className="font-accent text-3xl text-primary opacity-50">{item.step}</div>
-                <div>
-                  <h4 className="text-xl font-serif text-foreground mb-2">{item.title}</h4>
-                  <p className="text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FeatureGrid
+        eyebrow="WHAT IT DOES FOR YOUR EVENT"
+        title="A message people take back to work"
+        items={[
+          {
+            title: "Attention from the first minute",
+            desc: "Standard keynotes can be dry. Interactive magic hooks the audience early and keeps them with you for the entire presentation.",
+          },
+          {
+            title: "Your message, made visual",
+            desc: "Abstract ideas like innovation, trust, or perspective come to life in something people see with their own eyes. That's what makes the message stick.",
+          },
+          {
+            title: "Takeaways people use",
+            desc: "The magic isn't just for show. Each piece underlines a takeaway your audience can apply to their work right away.",
+          },
+        ]}
+      />
 
-      {/* Testimonials */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">IN THE SPOTLIGHT</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">What TV Hosts Say</h3>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
+      <ProcessSteps
+        eyebrow="THE PROCESS"
+        title="Building your keynote"
+        steps={[
+          {
+            title: "Theme alignment",
+            desc: "We identify the theme of your conference and the specific takeaways you want the audience to leave with.",
+          },
+          {
+            title: "Script integration",
+            desc: "I write a custom presentation that blends your message with magic chosen to make each point land.",
+          },
+          {
+            title: "The delivery",
+            desc: "An energetic, polished presentation, sized to fit your agenda, that sets the tone for the rest of your event.",
+          },
+        ]}
+      />
+
+      <section className="bg-background py-24">
+        <div className="container mx-auto max-w-4xl px-4 md:px-6">
+          <SectionHeading
+            eyebrow="ON LIVE TV"
+            title="Comfortable where there are no second takes"
+            className="mb-12"
+          />
+          <div className="grid gap-8 md:grid-cols-2">
             {mediaQuotes.map((t) => (
               <TestimonialCard key={t.id} t={t} />
             ))}
@@ -108,18 +97,12 @@ export default function KeynoteMagic() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-secondary text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-2xl">
-          <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-6">Elevate Your Next Conference</h2>
-          <p className="text-foreground/80 mb-8 text-lg">Give your attendees a keynote presentation they will be talking about long after the event ends.</p>
-          <Link href="/contact">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
-              BOOK STEFAN TO SPEAK
-            </Button>
-          </Link>
-        </div>
-      </section>
+      <FaqSection items={pickFaqs(["message", "travel", "tech", "booking"])} />
+
+      <PageCta
+        title="Let's make your message stick"
+        body="Tell me about your audience, your theme, and what you want people to walk away with. I'll reply within 24 hours with ideas."
+      />
     </div>
   );
 }

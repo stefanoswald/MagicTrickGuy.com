@@ -56,7 +56,7 @@ export default function Terms() {
           <div className="mt-12">
             <Link href="/contact">
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 rounded-none tracking-wide h-12">
-                CHECK AVAILABILITY
+                TELL ME ABOUT YOUR EVENT
               </Button>
             </Link>
           </div>

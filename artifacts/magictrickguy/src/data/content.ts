@@ -1,54 +1,75 @@
-export const services = [
+/**
+ * What a planner wants to happen at their event, and where Stefan explains how he gets them there.
+ * The homepage leads with these instead of a list of services: outcomes first, magic second.
+ */
+export const outcomes = [
   {
-    id: "corporate-events",
-    title: "Corporate Events",
-    description: "High-impact entertainment for galas, holiday parties, and corporate retreats.",
+    id: "connection",
+    title: "Your people actually connect",
+    description: "Close-up magic gives coworkers a reason to gather, laugh, and call each other over. Departments mix. The new hire ends up talking to the VP.",
     href: "/corporate-magic",
-    icon: "Building"
+    linkLabel: "Corporate events",
+    icon: "Users",
   },
   {
-    id: "trade-shows",
-    title: "Trade Shows",
-    description: "Stop traffic, generate leads, and make your booth the talk of the show floor.",
+    id: "energy",
+    title: "More energy in the room",
+    description: "People drop their guard, laugh, and start talking. I read the room and keep the energy up, from cocktail hour to the last toast.",
+    href: "/corporate-magic",
+    linkLabel: "Stage shows & strolling magic",
+    icon: "Zap",
+  },
+  {
+    id: "booth",
+    title: "A booth people can't walk past",
+    description: "Magic stops traffic, draws a crowd, and hands your sales team warm conversations instead of polite nods.",
     href: "/trade-show-magic",
-    icon: "Presentation"
+    linkLabel: "Trade show entertainment",
+    icon: "Presentation",
   },
   {
-    id: "keynote-magic",
-    title: "Keynote Magic",
-    description: "A customized presentation blending world-class magic with your company's core message.",
+    id: "smooth",
+    title: "A program that runs smoothly",
+    description: "An emcee who keeps things moving, fills the awkward gaps, and handles the unexpected, so you can stop watching the clock.",
+    href: "/emcee-host",
+    linkLabel: "Emcee & host",
+    icon: "Megaphone",
+  },
+  {
+    id: "message",
+    title: "A message that sticks",
+    description: "A keynote where the magic makes your theme something people see with their own eyes, so they still remember it on Monday.",
     href: "/keynote-magic",
-    icon: "Mic"
+    linkLabel: "Keynotes",
+    icon: "Mic",
   },
   {
-    id: "masterminds",
-    title: "Masterminds",
-    description: "The Magic Mansion: immersive multi-day intensives in Orlando where performers train with world-class mentors.",
-    href: "/masterminds",
-    icon: "Lightbulb"
+    id: "story",
+    title: "Guests who leave with a story",
+    description: "Birthdays, anniversaries, VIP dinners: the moment everyone is still talking about the next morning.",
+    href: "/private-events",
+    linkLabel: "Private events",
+    icon: "GlassWater",
   },
-  {
-    id: "private-events",
-    title: "Private Events",
-    description: "Exclusive close-up and parlor magic for VIP gatherings and luxury private parties.",
-    href: "/contact",
-    icon: "GlassWater"
-  },
-  {
-    id: "emcee-host",
-    title: "Emcee / Host",
-    description: "Keep your event flowing smoothly with a charismatic host who knows how to hold a room. Available as an add-on to any booking.",
-    href: "/contact",
-    icon: "Megaphone"
-  }
 ];
+
+/**
+ * Credentials, used as reassurance ("can I trust him with my event?") rather than as the headline.
+ * Source: Stefan's one sheet and his own notes (Oct 2026). Keep these in sync with the promo video's cards.
+ */
+export const proof = {
+  asSeenOn: ["America's Got Talent", "FOX", "NBC", "ABC"],
+  shows: "3,000+",
+  countries: "43",
+  reviews: "1,000+",
+  clients: ["Dell", "IBM", "HP"],
+};
 
 export const contact = {
   email: "StefanPaulOswald@gmail.com",
   instagram: "https://www.instagram.com/magictrickguy/",
   facebook: "https://www.facebook.com/MagicTrickGuy/",
   youtube: "https://www.youtube.com/@magictrickguy",
-  showreelYouTubeId: "dUVRMhvR3As",
   magicMansionUrl: "https://the-magic-mansion.com",
 };
 
@@ -189,29 +210,58 @@ export const testimonials: Testimonial[] = [
   }
 ];
 
-export const faqs = [
+export type Faq = {
+  id: string;
+  question: string;
+  answer: string;
+};
+
+export const faqs: Faq[] = [
   {
+    id: "booking",
     question: "How far in advance should we book?",
-    answer: "For prime dates (especially November/December holidays and spring conference season), it is recommended to book 3-6 months in advance. However, always reach out as last-minute dates occasionally open up."
+    answer: "For prime dates (especially November and December holidays and spring conference season), 3 to 6 months ahead is best. Last-minute dates do open up, so it's always worth asking."
   },
   {
-    question: "Do you travel for events?",
-    answer: "Yes. Stefan is based in Orlando, Florida, and travels nationwide and internationally for corporate events, trade shows, and speaking engagements."
+    id: "babysit",
+    question: "How much will we have to manage you?",
+    answer: "Very little. I arrive early, coordinate with your AV team and venue, and take care of my own details. My goal is to be one less thing on your list, not one more."
   },
   {
-    question: "Is the show 'clean'?",
-    answer: "Absolutely. Stefan's performances are 100% corporate-clean. The humor is sharp and sophisticated without ever relying on off-color jokes or embarrassing audience members."
+    id: "clean",
+    question: "Is the show clean?",
+    answer: "Always. Everything I do is clean and classy. The humor is sharp without off-color jokes, and nobody gets embarrassed, including the boss."
   },
   {
-    question: "What are your technical requirements?",
-    answer: "Technical requirements vary depending on the format. For stage shows, a reliable PA system, a wireless headset/lavalier microphone, and good lighting are required. A detailed technical rider will be provided upon booking."
+    id: "changes",
+    question: "What if the schedule changes or something goes wrong?",
+    answer: "That's live events. A speaker runs late, dinner runs long, a mic dies. After thousands of shows, very little rattles me. I adjust in the moment and keep the room with me while things get sorted."
   },
   {
+    id: "message",
     question: "Can you incorporate our company's message or product?",
-    answer: "Yes! For trade shows and keynote presentations, Stefan specializes in weaving your specific messaging, branding, or product features seamlessly into the performance."
+    answer: "Yes. For trade shows and keynotes especially, I can work your messaging, branding, or product features right into the performance, so the magic points people back to you."
   },
   {
-    question: "Can Stefan also emcee our event?",
-    answer: "Yes. Stefan can host your program as emcee in addition to performing, keeping introductions, awards, and transitions running smoothly. Emcee services can be added to any booking."
+    id: "emcee",
+    question: "Can you also emcee our event?",
+    answer: "Yes. I can host your program in addition to performing, keeping introductions, awards, and transitions on track. Hosting can be added to any booking."
+  },
+  {
+    id: "travel",
+    question: "Do you travel for events?",
+    answer: "Yes. I'm based in Orlando, Florida, I've performed in 43 countries, and I travel nationwide and internationally for corporate events, trade shows, and speaking engagements."
+  },
+  {
+    id: "tech",
+    question: "What are your technical requirements?",
+    answer: "It depends on the format. Strolling close-up magic needs very little. For stage shows: a reliable PA system, a wireless headset or lavalier mic, and good lighting. I'll send a simple tech rider once we book."
   }
 ];
+
+/** Pick FAQs by id, in the order given. */
+export function pickFaqs(ids: string[]): Faq[] {
+  return ids
+    .map((id) => faqs.find((f) => f.id === id))
+    .filter((f): f is Faq => Boolean(f));
+}

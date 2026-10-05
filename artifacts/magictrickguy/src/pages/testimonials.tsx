@@ -2,12 +2,17 @@ import { useDocumentTitle } from "@/hooks/use-document-title";
 import { testimonials, reviewPlatforms } from "@/data/content";
 import { Star, ExternalLink } from "lucide-react";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
+import { PageCta } from "@/components/shared/page-sections";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export default function Testimonials() {
-  useDocumentTitle("Reviews & Testimonials | Stefan Oswald");
+  useDocumentTitle("Reviews & Testimonials", {
+    description:
+      "More than 1,000 five-star reviews from live audiences, plus what clients and TV hosts say about Orlando magician and emcee Stefan Oswald.",
+    path: "/testimonials",
+  });
   const [filter, setFilter] = useState("All");
 
   const categories = ["All", "Corporate", "Media", "Live Show"];
@@ -20,12 +25,13 @@ export default function Testimonials() {
     <div className="flex flex-col min-h-screen pt-24">
       <section className="py-20 bg-card border-b border-border">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl text-center">
-          <h1 className="font-accent tracking-widest text-sm text-primary mb-4">SOCIAL PROOF</h1>
-          <h2 className="text-4xl md:text-6xl font-serif font-bold text-foreground leading-tight mb-6">
-            Don't Just Take Our Word For It
-          </h2>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground leading-tight mb-6">
+            <span className="mb-4 block font-accent text-sm font-normal tracking-widest text-primary">REVIEWS</span>
+            Don't just take my word for it
+          </h1>
           <p className="text-lg text-muted-foreground">
-            Stefan has earned more than 1,000 five-star reviews from live audiences. Here are a few favorites, along with what clients and TV hosts have said.
+            You're trusting me with your event, so here's the evidence: more than 1,000 five-star reviews from live
+            audiences. Below are a few favorites, along with what clients and TV hosts have said.
           </p>
         </div>
       </section>
@@ -100,6 +106,11 @@ export default function Testimonials() {
           </div>
         </div>
       </section>
+
+      <PageCta
+        title="Let's give your guests something to rave about"
+        body="Tell me what you're planning and what success looks like. I'll reply within 24 hours with ideas and availability."
+      />
     </div>
   );
 }

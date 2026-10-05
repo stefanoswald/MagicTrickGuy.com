@@ -3,39 +3,65 @@ import { BookingForm } from "@/components/shared/booking-form";
 import { contact } from "@/data/content";
 import { Mail } from "lucide-react";
 
+const nextSteps = [
+  "I read your note and reply within 24 hours.",
+  "We talk through your goals, your guests, and the schedule.",
+  "I send ideas, the right format for your event, and a quote.",
+];
+
 export default function Contact() {
-  useDocumentTitle("Contact & Booking | Stefan Oswald");
+  useDocumentTitle("Contact & Booking", {
+    description:
+      "Tell Stefan Oswald what you're planning and what success looks like for your event. Orlando-based corporate magician and emcee, available worldwide. Replies within 24 hours.",
+    path: "/contact",
+  });
 
   return (
-    <div className="flex flex-col min-h-screen pt-24">
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-24">
+    <div className="flex min-h-screen flex-col pt-24">
+      <section className="bg-background py-16 md:py-20">
+        <div className="container mx-auto max-w-6xl px-4 md:px-6">
+          {/* On phones the form comes right after the intro; on desktop it sits beside everything else. */}
+          <div className="grid gap-12 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-24 lg:gap-y-10">
             <div className="lg:col-span-5">
-              <h1 className="font-accent tracking-widest text-sm text-primary mb-4">GET IN TOUCH</h1>
-              <h2 className="text-4xl md:text-6xl font-serif font-bold text-foreground leading-tight mb-6">
-                Book Stefan
-              </h2>
-              <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
-                Ready to make your next event impossible to forget? Fill out the form with as many details as possible. 
-                <strong className="text-foreground block mt-4">We promise a response within 24 hours.</strong>
+              <h1 className="mb-6 font-serif text-4xl font-bold leading-tight text-foreground md:text-6xl">
+                <span className="mb-4 block font-accent text-sm font-normal tracking-widest text-primary">
+                  LET'S TALK
+                </span>
+                Tell me what you're planning
+              </h1>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                The more you share about your guests, your goals, and what success looks like, the better the ideas I
+                can bring you.
+                <strong className="mt-4 block text-foreground">I reply within 24 hours.</strong>
               </p>
-              
-              <div className="p-8 bg-card border border-border mt-12">
-                <h3 className="font-serif text-2xl text-foreground mb-4">Direct Contact</h3>
+            </div>
+
+            <div className="border border-border bg-card p-6 shadow-xl md:p-10 lg:col-span-7 lg:row-span-2 lg:self-start">
+              <BookingForm />
+            </div>
+
+            <div className="lg:col-span-5">
+              <h2 className="mb-4 font-accent text-sm tracking-widest text-primary">WHAT HAPPENS NEXT</h2>
+              <ol className="mb-10 space-y-3">
+                {nextSteps.map((step, i) => (
+                  <li key={step} className="flex gap-4 text-foreground/90">
+                    <span className="font-accent text-primary">{i + 1}.</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="border border-border bg-card p-8">
+                <h2 className="mb-4 font-serif text-2xl text-foreground">Prefer email?</h2>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="inline-flex items-center gap-3 text-foreground hover:text-primary transition-colors break-all"
+                  className="inline-flex items-center gap-3 break-all text-foreground transition-colors hover:text-primary"
                 >
-                  <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+                  <Mail className="h-5 w-5 flex-shrink-0 text-primary" />
                   {contact.email}
                 </a>
-                <p className="text-muted-foreground mt-4 text-sm">Based in Orlando, FL. Available worldwide.</p>
+                <p className="mt-4 text-sm text-muted-foreground">Based in Orlando, FL. Available worldwide.</p>
               </div>
-            </div>
-            
-            <div className="lg:col-span-7 bg-card p-6 md:p-10 border border-border shadow-xl">
-              <BookingForm />
             </div>
           </div>
         </div>

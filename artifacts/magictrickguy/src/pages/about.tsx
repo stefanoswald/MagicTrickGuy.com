@@ -1,109 +1,148 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
 import { PhotoGallery } from "@/components/shared/photo-gallery";
+import { CtaButton, PageCta, SectionHeading } from "@/components/shared/page-sections";
 import { galleryPhotos, photos } from "@/data/photos";
 
 export default function About() {
-  useDocumentTitle("About Stefan Oswald | Magician");
+  useDocumentTitle("About Stefan Oswald | Orlando Magician & Emcee", {
+    description:
+      "Stefan Oswald is an Orlando-based magician and emcee with thousands of shows in 43 countries, an America's Got Talent appearance, and 1,000+ five-star reviews. His job: the room.",
+    path: "/about",
+  });
 
   return (
-    <div className="flex flex-col min-h-screen pt-24">
-      <section className="py-20 bg-background border-b border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+    <div className="flex min-h-screen flex-col pt-24">
+      <section className="border-b border-border bg-background py-20">
+        <div className="container mx-auto max-w-6xl px-4 md:px-6">
+          <div className="grid items-center gap-12 md:grid-cols-2">
             <div>
               <img
                 src={photos.portrait.src}
                 alt={photos.portrait.alt}
-                className="aspect-[3/4] w-full object-cover border border-border"
+                className="aspect-[3/4] w-full border border-border object-cover"
               />
             </div>
             <div>
-              <h1 className="font-accent tracking-widest text-sm text-primary mb-4">MEET STEFAN</h1>
-              <h2 className="text-4xl md:text-6xl font-serif font-bold text-foreground leading-tight mb-6">
-                Not Your Average Magician.
-              </h2>
-              <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
+              <h1 className="mb-6 font-serif text-4xl font-bold leading-tight text-foreground md:text-6xl">
+                <span className="mb-4 block font-accent text-sm font-normal tracking-widest text-primary">
+                  MEET STEFAN
+                </span>
+                Not your average magician.
+              </h1>
+              <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
                 <p>
-                  Stefan Oswald has spent more than 15 years perfecting the art of astonishment. From close-up miracles inches from your eyes to full stage illusions, he has earned more than 1,000 five-star reviews from live audiences and appeared on FOX, NBC, and ABC. Through it all, his philosophy has stayed the same: magic is a vehicle for connection.
+                  I'm Stefan Oswald, an Orlando-based magician and emcee. I've performed thousands of shows in 43
+                  countries, stood on the America's Got Talent stage, and appeared on FOX, NBC, and ABC. Live audiences
+                  have left me more than 1,000 five-star reviews.
                 </p>
                 <p>
-                  Based in Orlando, Florida, Stefan combines elite sleight of hand with sharp, corporate-clean comedy. He doesn't just fool audiences—he engages them, ensuring that every guest feels like an active participant rather than a passive observer.
+                  But the thing clients thank me for most isn't a trick. It's what happens to the room. People drop
+                  their guard, laugh, feel like a kid again, and start talking to each other. One client liked it so
+                  much they made my official title <span className="text-foreground">CEO of Vibe</span>.
                 </p>
                 <p>
-                  When he's not on stage, Stefan and his team host The Magic Mansion in Orlando, small-group intensives where magicians and mentalists sharpen their acts alongside world-class mentors.
+                  Nearly 20 years in, my philosophy is simple: magic is a vehicle for connection. I keep it clean and
+                  classy, I tailor it to your crowd, and I take care of the details so you don't have to.
                 </p>
               </div>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Link href="/contact">
-                  <Button className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 tracking-wide h-12">
-                    CHECK AVAILABILITY
-                  </Button>
-                </Link>
-                <Link href="/videos">
-                  <Button variant="outline" className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10 rounded-none px-8 tracking-wide h-12">
-                    WATCH THE SHOWREEL
-                  </Button>
-                </Link>
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                <CtaButton label="LET'S TALK" />
+                <Button
+                  asChild
+                  variant="outline"
+                  className="h-14 w-full rounded-none border-primary px-8 tracking-wide text-primary hover:bg-primary/10 sm:w-auto"
+                >
+                  <Link href="/videos">WATCH THE VIDEO</Link>
+                </Button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-card">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE JOURNEY</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">From Cards to Corporate</h3>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
+      <section className="bg-card py-24">
+        <div className="container mx-auto max-w-6xl px-4 md:px-6">
+          <SectionHeading eyebrow="THE JOURNEY" title="What thousands of shows taught me" />
+
+          <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
             <div className="order-2 md:order-1">
-              <h4 className="text-2xl font-serif text-foreground mb-4">The Origin</h4>
-              <p className="text-muted-foreground leading-relaxed">
-                Like many magicians, Stefan's obsession started with a simple deck of cards. But while others focused entirely on the mechanics of the tricks, Stefan became fascinated with the psychology behind them. How do you direct attention? How do you build tension? How do you craft a narrative that makes a simple trick feel like a miracle?
+              <h3 className="mb-4 font-serif text-2xl text-foreground">How to read a room</h3>
+              <p className="leading-relaxed text-muted-foreground">
+                As a resident magician at The Great Magic Hall in Old Town Kissimmee, I performed show after show for
+                families, couples, and visitors from all over the world. Every crowd is different. You learn fast what
+                makes people lean in, what makes them laugh, and when to change the pace.
               </p>
             </div>
             <div className="order-1 md:order-2">
               <img
-                src={photos.corporateCloseUp.src}
-                alt={photos.corporateCloseUp.alt}
-                className="aspect-[3/2] w-full object-cover border border-border"
+                src={photos.stageLevitation.src}
+                alt={photos.stageLevitation.alt}
+                className="aspect-[3/2] w-full border border-border object-cover object-[50%_20%]"
                 loading="lazy"
               />
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
             <div>
               <img
                 src={photos.outdoorLevitation.src}
                 alt={photos.outdoorLevitation.alt}
-                className="aspect-[3/2] w-full object-cover border border-border"
+                className="aspect-[3/2] w-full border border-border object-cover"
                 loading="lazy"
               />
             </div>
             <div>
-              <h4 className="text-2xl font-serif text-foreground mb-4">The Philosophy</h4>
-              <p className="text-muted-foreground leading-relaxed">
-                Today, Stefan's performances are built on the belief that corporate entertainment shouldn't be an afterthought. It should be the highlight of the event. By combining world-class magic with sophisticated humor and genuine audience interaction, Stefan delivers an experience that respects the intelligence of his audience while completely blowing their minds.
+              <h3 className="mb-4 font-serif text-2xl text-foreground">Big stages, small rooms</h3>
+              <p className="leading-relaxed text-muted-foreground">
+                I've performed on the America's Got Talent stage, on stage in Las Vegas, and live on FOX 35 in
+                Orlando. I've also worked trade show booths, company parties, and cocktail hours. The room changes.
+                The goal doesn't: entertainment shouldn't be an afterthought. It should help your event do its job.
               </p>
+            </div>
+          </div>
+
+          <div className="grid items-center gap-12 md:grid-cols-2">
+            <div className="order-2 md:order-1">
+              <h3 className="mb-4 font-serif text-2xl text-foreground">Off stage</h3>
+              <p className="leading-relaxed text-muted-foreground">
+                When I'm not performing, I'm usually flying drones, traveling, writing, or making videos. With my team,
+                I also host The Magic Mansion in Orlando: small-group masterminds where magicians and mentalists sharpen
+                their acts alongside respected mentors.
+              </p>
+              <Link
+                href="/masterminds"
+                className="mt-6 inline-flex items-center text-sm font-medium uppercase tracking-wide text-foreground transition-colors hover:text-primary"
+              >
+                The Magic Mansion (for magicians) <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+            <div className="order-1 md:order-2">
+              <img
+                src={photos.closeUpCube.src}
+                alt={photos.closeUpCube.alt}
+                className="aspect-[3/2] w-full border border-border object-cover object-[50%_35%]"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-background border-t border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">GALLERY</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">Behind the Magic</h3>
-          </div>
+      <section className="border-t border-border bg-background py-24">
+        <div className="container mx-auto max-w-6xl px-4 md:px-6">
+          <SectionHeading eyebrow="GALLERY" title="Behind the magic" className="mb-12" />
           <PhotoGallery items={galleryPhotos} />
         </div>
       </section>
+
+      <PageCta
+        title="Let's talk about your event"
+        body="Tell me what you're planning and what success looks like. I'll reply within 24 hours with ideas and availability."
+      />
     </div>
   );
 }

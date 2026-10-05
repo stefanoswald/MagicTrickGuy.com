@@ -12,6 +12,8 @@ import Home from "@/pages/home";
 import CorporateMagic from "@/pages/corporate-magic";
 import TradeShowMagic from "@/pages/trade-show-magic";
 import KeynoteMagic from "@/pages/keynote-magic";
+import EmceeHost from "@/pages/emcee-host";
+import PrivateEvents from "@/pages/private-events";
 import Masterminds from "@/pages/masterminds";
 import About from "@/pages/about";
 import Testimonials from "@/pages/testimonials";
@@ -32,6 +34,8 @@ function Router() {
           <Route path="/corporate-magic" component={CorporateMagic} />
           <Route path="/trade-show-magic" component={TradeShowMagic} />
           <Route path="/keynote-magic" component={KeynoteMagic} />
+          <Route path="/emcee-host" component={EmceeHost} />
+          <Route path="/private-events" component={PrivateEvents} />
           <Route path="/masterminds" component={Masterminds} />
           <Route path="/about" component={About} />
           <Route path="/testimonials" component={Testimonials} />

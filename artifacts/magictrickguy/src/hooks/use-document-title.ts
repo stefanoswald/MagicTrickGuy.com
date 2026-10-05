@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const siteName = "Stefan Oswald";
 const defaultDescription =
-  "Orlando-based magician Stefan Oswald creates corporate magic, trade show entertainment, keynote experiences, and private event performances worldwide.";
+  "Orlando corporate magician and emcee Stefan Oswald builds the entertainment around your event's goals: connection, energy, booth traffic, and a program that runs smoothly.";
 const defaultImage = "/opengraph.jpg";
 
 type PageMeta = {

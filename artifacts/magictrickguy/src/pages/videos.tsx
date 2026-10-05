@@ -1,13 +1,17 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
-import { YouTubeEmbed } from "@/components/shared/youtube-embed";
+import { Youtube } from "lucide-react";
+import { PromoVideo } from "@/components/shared/promo-video";
+import { PageCta, SectionHeading } from "@/components/shared/page-sections";
 import { contact } from "@/data/content";
 import { photos } from "@/data/photos";
-import { Youtube } from "lucide-react";
 
 export default function Videos() {
-  useDocumentTitle("Video Gallery | Stefan Oswald");
+  useDocumentTitle("Videos | Corporate Magician & Emcee", {
+    description:
+      "Watch Orlando corporate magician and emcee Stefan Oswald explain what a win looks like for your event, plus clips from live TV on FOX 35 Orlando.",
+    path: "/videos",
+  });
 
   const tvStills = [
     { ...photos.fox35Stage, caption: "Live on FOX 35 Orlando" },
@@ -15,38 +19,42 @@ export default function Videos() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen pt-24">
-      <section className="py-20 bg-card border-b border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-5xl text-center">
-          <h1 className="font-accent tracking-widest text-sm text-primary mb-4">SHOWREEL</h1>
-          <h2 className="text-4xl md:text-6xl font-serif font-bold text-foreground leading-tight mb-12">
-            Watch Stefan In Action
-          </h2>
-          <div className="w-full max-w-4xl mx-auto shadow-2xl rounded-lg overflow-hidden border border-border">
-            <YouTubeEmbed videoId={contact.showreelYouTubeId} title="Stefan Oswald, Magician" />
+    <div className="flex min-h-screen flex-col pt-24">
+      <section className="border-b border-border bg-card py-16 md:py-20">
+        <div className="container mx-auto max-w-5xl px-4 text-center md:px-6">
+          <h1 className="mb-6 font-serif text-4xl font-bold leading-tight text-foreground md:text-6xl">
+            <span className="mb-4 block font-accent text-sm font-normal tracking-widest text-primary">VIDEO</span>
+            What a win looks like for your event
+          </h1>
+          <p className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground">
+            87 seconds on how I help planners create events people talk about, and what I'm really there to do.
+          </p>
+          <div className="mx-auto w-full max-w-4xl">
+            <PromoVideo />
           </div>
-          <a href={contact.youtube} target="_blank" rel="noopener noreferrer" className="inline-block mt-10">
-            <Button variant="outline" className="border-foreground/20 text-foreground hover:bg-foreground/5 rounded-none px-8 tracking-wide">
+          <Button
+            asChild
+            variant="outline"
+            className="mt-10 rounded-none border-foreground/20 px-8 tracking-wide text-foreground hover:bg-foreground/5"
+          >
+            <a href={contact.youtube} target="_blank" rel="noopener noreferrer">
               <Youtube className="mr-2 h-5 w-5" /> MORE ON YOUTUBE
-            </Button>
-          </a>
+            </a>
+          </Button>
         </div>
       </section>
 
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">AS SEEN ON TV</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">Featured on FOX 35 Orlando</h3>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
+      <section className="bg-background py-24">
+        <div className="container mx-auto max-w-6xl px-4 md:px-6">
+          <SectionHeading eyebrow="AS SEEN ON TV" title="Featured on FOX 35 Orlando" className="mb-12" />
+          <div className="grid gap-8 md:grid-cols-2">
             {tvStills.map((still) => (
               <figure key={still.src}>
                 <img
                   src={still.src}
                   alt={still.alt}
                   loading="lazy"
-                  className="aspect-video w-full object-cover border border-border"
+                  className="aspect-video w-full border border-border object-cover"
                 />
                 <figcaption className="mt-4 font-serif text-xl text-foreground">{still.caption}</figcaption>
               </figure>
@@ -55,17 +63,10 @@ export default function Videos() {
         </div>
       </section>
 
-      <section className="py-24 bg-secondary text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-2xl">
-          <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-6">Imagine This at Your Event</h2>
-          <p className="text-foreground/80 mb-8 text-lg">Tell Stefan about your audience and he'll recommend the right format for your program.</p>
-          <Link href="/contact">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
-              CHECK AVAILABILITY
-            </Button>
-          </Link>
-        </div>
-      </section>
+      <PageCta
+        title="Picture this in your room"
+        body="Tell me about your audience and what success looks like, and I'll recommend the right format for your program."
+      />
     </div>
   );
 }

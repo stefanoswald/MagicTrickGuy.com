@@ -10,7 +10,7 @@ const pillars = [
     desc: "This is not a convention. There's no dealers' room and nobody reads slides at you. Attendees perform their material, get direct notes, revise, and perform again.",
   },
   {
-    title: "World-Class Mentors",
+    title: "Mentors Who've Done It",
     desc: "Each program is led by respected names in magic and mentalism, from two-time FISM award winner Gregory Wilson to Banachek and Kent Axell.",
   },
   {
@@ -37,7 +37,11 @@ const pastPrograms = [
 ];
 
 export default function Masterminds() {
-  useDocumentTitle("The Magic Mansion | Stefan Oswald");
+  useDocumentTitle("The Magic Mansion | Stefan Oswald", {
+    description:
+      "The Magic Mansion: small-group, multi-day masterminds in Orlando where magicians and mentalists develop their acts with mentors like Gregory Wilson, Banachek, and Kent Axell.",
+    path: "/masterminds",
+  });
 
   return (
     <div className="flex flex-col min-h-screen pt-24">
@@ -50,10 +54,10 @@ export default function Masterminds() {
         <div className="container mx-auto px-4 md:px-6 max-w-4xl text-center relative z-10">
           <h1 className="font-accent tracking-widest text-primary mb-6">THE MAGIC MANSION</h1>
           <h2 className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-tight mb-8">
-            Immersive Masterminds for Performers
+            Hands-On Masterminds for Performers
           </h2>
           <p className="text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
-            Stefan and his team host small-group, multi-day masterminds in Orlando where magicians and mentalists put their material on its feet and develop it alongside world-class mentors.
+            Stefan and his team host small-group, multi-day masterminds in Orlando where magicians and mentalists put their material on its feet and develop it alongside respected mentors.
           </p>
           <a href={contact.magicMansionUrl} target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">

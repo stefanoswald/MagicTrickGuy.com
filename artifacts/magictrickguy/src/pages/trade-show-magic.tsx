@@ -1,123 +1,112 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
-import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { faqs, testimonials } from "@/data/content";
+import { pickFaqs, testimonials } from "@/data/content";
 import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
+import { ProofStrip } from "@/components/shared/proof-strip";
+import {
+  FaqSection,
+  FeatureGrid,
+  PageCta,
+  ProcessSteps,
+  PullQuote,
+  SectionHeading,
+  ServiceHero,
+} from "@/components/shared/page-sections";
 
 export default function TradeShowMagic() {
-  useDocumentTitle("Trade Show Magic | Stefan Oswald");
+  useDocumentTitle("Trade Show Magician & Booth Entertainment", {
+    description:
+      "Trade show entertainment that stops traffic, draws a crowd to your booth, and starts conversations your sales team can use. Stefan Oswald is based in Orlando and travels nationwide.",
+    path: "/trade-show-magic",
+  });
 
   const showTestimonials = testimonials.filter((t) => t.eventType === "Corporate");
 
   return (
-    <div className="flex flex-col min-h-screen pt-24">
-      <section className="py-20 bg-card border-b border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground leading-tight mb-6">
-                Trade Show Magic
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Stop traffic in the aisles, gather massive crowds, and seamlessly deliver your sales pitch through impossible magic.
-              </p>
-              <Link href="/contact">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 rounded-none tracking-wide h-14">
-                  BOOK FOR YOUR BOOTH
-                </Button>
-              </Link>
-            </div>
-            <div>
-              <img
-                src={photos.closeUpCube.src}
-                alt={photos.closeUpCube.alt}
-                className="aspect-[4/5] max-h-[560px] w-full object-cover object-[50%_40%] border border-border"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="flex min-h-screen flex-col pt-24">
+      <ServiceHero
+        eyebrow="TRADE SHOW ENTERTAINMENT"
+        title="Make your booth impossible to walk past"
+        intro={
+          <>
+            <p>
+              Trade show floors are loud, crowded, and full of people trying not to make eye contact. You've invested
+              in the space, the booth, and the team. Now you need people to actually stop.
+            </p>
+            <p>
+              I stop traffic in the aisles, draw a crowd, and turn curiosity into conversations your sales team can
+              use.
+            </p>
+          </>
+        }
+        ctaLabel="TELL ME ABOUT YOUR SHOW"
+        photo={photos.closeUpCube}
+        imageClassName="aspect-[4/5] max-h-[560px] object-[50%_40%]"
+      />
 
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE ROI</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">Why It Works</h3>
-          </div>
-          <div className="grid md:grid-cols-3 gap-12">
-            <div>
-              <h4 className="text-xl font-serif text-foreground mb-4">Maximum Foot Traffic</h4>
-              <p className="text-muted-foreground">Trade show floors are chaotic. Stefan uses high-energy visual magic to physically stop attendees from walking past your booth.</p>
-            </div>
-            <div>
-              <h4 className="text-xl font-serif text-foreground mb-4">Message Integration</h4>
-              <p className="text-muted-foreground">Once the crowd is gathered, the magic transitions into a customized presentation highlighting your product's key benefits and differentiators.</p>
-            </div>
-            <div>
-              <h4 className="text-xl font-serif text-foreground mb-4">Qualified Lead Handoff</h4>
-              <p className="text-muted-foreground">After the 10-minute presentation, the fully primed crowd is seamlessly handed off to your sales team to scan badges and close deals.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProofStrip className="border-t-0" />
 
-      {/* How It Works */}
-      <section className="py-24 bg-card border-y border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">THE PROCESS</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">How We Partner</h3>
-          </div>
-          <div className="space-y-8">
-            {[
-              { step: "01", title: "Product Immersion", desc: "Stefan learns your product inside and out, identifying the core messages to highlight." },
-              { step: "02", title: "Script & Trick Development", desc: "Custom illusions are designed to visually demonstrate your product's features (e.g., speed, security, efficiency)." },
-              { step: "03", title: "Show Execution", desc: "Performing 2-3 shows per hour, Stefan consistently packs your booth and feeds leads to your team." }
-            ].map((item, i) => (
-              <div key={i} className="flex gap-6 items-start bg-background p-8 border border-border">
-                <div className="font-accent text-3xl text-primary opacity-50">{item.step}</div>
-                <div>
-                  <h4 className="text-xl font-serif text-foreground mb-2">{item.title}</h4>
-                  <p className="text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FeatureGrid
+        eyebrow="WHAT YOUR BOOTH GETS"
+        title="Built around your booth goals"
+        intro="From the PGA Show in Orlando to your next expo, the goal is the same: more of the right people in your booth, talking to your team."
+        items={[
+          {
+            title: "Traffic that stops",
+            desc: "High-energy visual magic pulls people out of the aisle and into your space. And a crowd draws a crowd.",
+          },
+          {
+            title: "Your message, front and center",
+            desc: "Once the crowd gathers, the magic turns into a short, customized presentation of your product's key benefits and what sets you apart.",
+          },
+          {
+            title: "Warm conversations for your team",
+            desc: "After each show, I hand a curious, smiling crowd to your sales team, ready to scan badges and start real conversations.",
+          },
+          {
+            title: "A booth people remember",
+            desc: "Attendees walk past hundreds of booths. They remember the one where something impossible happened, and the company it happened with.",
+          },
+        ]}
+      />
 
-      {/* Testimonials */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="font-accent tracking-widest text-sm text-primary mb-4">CLIENT FEEDBACK</h2>
-            <h3 className="text-3xl md:text-4xl font-serif text-foreground">Built to Delight Your Customers</h3>
-          </div>
+      <PullQuote>The magic earns attention. Your business goal decides what we do with it.</PullQuote>
+
+      <ProcessSteps
+        eyebrow="THE PROCESS"
+        title="How we partner"
+        steps={[
+          {
+            title: "Your goals and your product",
+            desc: "Who do you want to meet, and what should they remember? I learn your product and the core messages to highlight.",
+          },
+          {
+            title: "Magic built for your pitch",
+            desc: "I design routines that show off what matters about your product (speed, security, simplicity, whatever it is), so the trick makes your point.",
+          },
+          {
+            title: "Show days",
+            desc: "Short shows throughout the day keep your booth full and keep sending people to your team. You focus on the conversations.",
+          },
+        ]}
+      />
+
+      <section className="bg-background py-24">
+        <div className="container mx-auto max-w-4xl px-4 md:px-6">
+          <SectionHeading eyebrow="CLIENT FEEDBACK" title="Built to delight your customers" className="mb-12" />
           {showTestimonials.map((t) => (
             <TestimonialCard key={t.id} t={t} />
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-secondary text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-2xl">
-          <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-6">Dominate the Show Floor</h2>
-          <p className="text-foreground/80 mb-8 text-lg">Turn your booth into the most talked-about attraction at the conference.</p>
-          <Link href="/contact">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 rounded-none tracking-wide h-14 text-lg">
-              GET A QUOTE
-            </Button>
-          </Link>
-        </div>
-      </section>
+      <FaqSection items={pickFaqs(["message", "babysit", "travel", "tech", "booking"])} />
+
+      <PageCta
+        title="Let's fill your booth"
+        body="Tell me about your show, your booth, and who you want to meet. I'll reply within 24 hours with ideas."
+        label="TELL ME ABOUT YOUR SHOW"
+      />
     </div>
   );
 }

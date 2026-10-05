@@ -14,7 +14,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground max-w-md text-sm leading-relaxed mb-6">
-              World-class magic, comedy, and storytelling for corporate events, trade shows, keynotes, and private events. Based in Orlando, performing worldwide.
+              Corporate magician and emcee based in Orlando, performing worldwide. I help planners create events people
+              talk about: more connection, more energy, and one less thing to worry about.
             </p>
             <a
               href={`mailto:${contact.email}`}
@@ -44,7 +45,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-accent text-sm tracking-widest text-foreground mb-6">Services</h4>
+            <h4 className="font-accent text-sm tracking-widest text-foreground mb-6">Events</h4>
             <ul className="space-y-4">
               <li>
                 <Link href="/corporate-magic" className="text-sm text-muted-foreground hover:text-primary transition-colors">Corporate Events</Link>
@@ -53,10 +54,13 @@ export function Footer() {
                 <Link href="/trade-show-magic" className="text-sm text-muted-foreground hover:text-primary transition-colors">Trade Shows</Link>
               </li>
               <li>
-                <Link href="/keynote-magic" className="text-sm text-muted-foreground hover:text-primary transition-colors">Keynote Magic</Link>
+                <Link href="/emcee-host" className="text-sm text-muted-foreground hover:text-primary transition-colors">Emcee &amp; Host</Link>
               </li>
               <li>
-                <Link href="/masterminds" className="text-sm text-muted-foreground hover:text-primary transition-colors">Masterminds</Link>
+                <Link href="/keynote-magic" className="text-sm text-muted-foreground hover:text-primary transition-colors">Keynotes</Link>
+              </li>
+              <li>
+                <Link href="/private-events" className="text-sm text-muted-foreground hover:text-primary transition-colors">Private Events</Link>
               </li>
             </ul>
           </div>
@@ -68,13 +72,16 @@ export function Footer() {
                 <Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Stefan</Link>
               </li>
               <li>
-                <Link href="/testimonials" className="text-sm text-muted-foreground hover:text-primary transition-colors">Testimonials</Link>
+                <Link href="/testimonials" className="text-sm text-muted-foreground hover:text-primary transition-colors">Reviews</Link>
               </li>
               <li>
                 <Link href="/videos" className="text-sm text-muted-foreground hover:text-primary transition-colors">Videos</Link>
               </li>
               <li>
                 <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</Link>
+              </li>
+              <li>
+                <Link href="/masterminds" className="text-sm text-muted-foreground hover:text-primary transition-colors">Masterminds (for magicians)</Link>
               </li>
             </ul>
           </div>
