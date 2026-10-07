@@ -4,7 +4,7 @@ import { ArrowRight, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * Stefan's booking promo (v7, website cut). Self-hosted so it starts fast.
+ * Stefan's booking promo (v9, the final website cut). Self-hosted so it starts fast.
  * The video ends on a "Click Below!" card with an arrow, so the call to action
  * is built in directly under the player and lights up when the video ends.
  * Phones get the 720p file; larger screens get 1080p.
