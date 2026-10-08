@@ -92,6 +92,89 @@ export const clients: Client[] = [
   { name: "Collier County Public Schools", logo: "/images/clients/collier-county-public-schools.webp", height: 38, width: 542, intrinsicHeight: 150 },
 ];
 
+/**
+ * Published starting prices (approved by Stefan on Oct 8, 2026, from the 2026 pricing research).
+ * Keep these the same everywhere: site, one-sheets, GigSalad, The Bash, bureau profiles.
+ * Multi-day discounts, add-on prices, extra-magician rates, and partner rates stay in private quotes.
+ */
+export type Price = {
+  id: "strolling" | "tradeShow" | "stage" | "emcee" | "keynote";
+  title: string;
+  /** "From" amount, or a range for keynotes. */
+  price: string;
+  prefix?: string;
+  unit?: string;
+  description: string;
+  extra?: string;
+  href: string;
+  linkLabel: string;
+};
+
+export const prices: Record<Price["id"], Price> = {
+  strolling: {
+    id: "strolling",
+    title: "Close-up & strolling magic",
+    prefix: "From",
+    price: "$2,500",
+    unit: "up to two hours",
+    description:
+      "I mingle with your guests and give every group a moment they'll talk about. Right for most receptions up to about 150 guests.",
+    extra: "Extra hours are $750 each. For bigger crowds, I can bring in more magicians, quoted with your event.",
+    href: "/corporate-magic",
+    linkLabel: "Corporate events",
+  },
+  tradeShow: {
+    id: "tradeShow",
+    title: "Trade show booth",
+    prefix: "From",
+    price: "$3,500",
+    unit: "per show day",
+    description:
+      "Up to six floor hours of short, rotating shows that stop traffic and hand your team warm conversations.",
+    extra: "Extra floor hours are $500 each, so I can cover the show from open to close. Ask about multi-day packages.",
+    href: "/trade-show-magic",
+    linkLabel: "Trade shows",
+  },
+  stage: {
+    id: "stage",
+    title: "Stage show",
+    prefix: "From",
+    price: "$5,000",
+    unit: "20 to 45 minutes",
+    description:
+      "A show for your awards night, holiday party, or general session, built around your crowd and clean enough for everyone.",
+    href: "/corporate-magic",
+    linkLabel: "Corporate events",
+  },
+  emcee: {
+    id: "emcee",
+    title: "Emcee & host",
+    prefix: "From",
+    price: "$3,500",
+    unit: "per event or meeting day",
+    description:
+      "I keep your program on time, introduce every speaker with energy, and handle the surprises so you don't have to.",
+    href: "/emcee-host",
+    linkLabel: "Emcee & host",
+  },
+  keynote: {
+    id: "keynote",
+    title: "Keynote",
+    price: "$10,000–$15,000",
+    unit: "plus travel",
+    description:
+      "A keynote of up to 90 minutes, woven into a custom magic show built around your theme. I need 90 days' notice to build it.",
+    extra: "Same fee whether you book me directly or through a speakers bureau.",
+    href: "/keynote-magic",
+    linkLabel: "Keynotes",
+  },
+};
+
+export const priceTerms =
+  "A 50% deposit holds your date. Travel outside Central Florida is extra. These are starting prices; your quote depends on the date, the length, and how much we customize.";
+
+export const partnerNote = "Event planners, agencies, DMCs, and speakers bureaus: ask me about partner rates.";
+
 export const contact = {
   email: "StefanPaulOswald@gmail.com",
   instagram: "https://www.instagram.com/magictrickguy/",

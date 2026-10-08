@@ -75,6 +75,9 @@ export function Footer() {
                 <Link href="/testimonials" className="text-sm text-muted-foreground hover:text-primary transition-colors">Reviews</Link>
               </li>
               <li>
+                <Link href="/pricing" className="text-sm text-muted-foreground hover:text-primary transition-colors">Pricing</Link>
+              </li>
+              <li>
                 <Link href="/videos" className="text-sm text-muted-foreground hover:text-primary transition-colors">Videos</Link>
               </li>
               <li>

@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/trade-show-magic", label: "Trade Shows" },
   { href: "/emcee-host", label: "Emcee" },
   { href: "/keynote-magic", label: "Keynote" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
   { href: "/videos", label: "Videos" },
 ];

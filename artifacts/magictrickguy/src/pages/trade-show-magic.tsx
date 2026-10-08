@@ -4,6 +4,7 @@ import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
 import { ProofStrip } from "@/components/shared/proof-strip";
 import { ClientMarquee } from "@/components/shared/client-marquee";
+import { InvestmentSection } from "@/components/shared/pricing";
 import {
   FaqSection,
   FeatureGrid,
@@ -110,6 +111,8 @@ export default function TradeShowMagic() {
           ))}
         </div>
       </section>
+
+      <InvestmentSection ids={["tradeShow"]} />
 
       <FaqSection items={pickFaqs(["message", "manage", "travel", "tech", "booking"])} />
 

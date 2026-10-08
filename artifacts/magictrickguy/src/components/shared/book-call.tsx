@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { contact } from "@/data/content";
+import { AvailabilityButton } from "@/components/shared/availability";
 import { cn } from "@/lib/utils";
 
 /**
@@ -71,14 +72,18 @@ export function BookCallButton({
   );
 }
 
-/** A short "rather talk?" line with the button, used under each Let's Talk heading. */
+/** Check the date or talk it through: shown above the form under the Let's Talk heading. */
 export function BookCallBar({ className }: { className?: string }) {
   return (
-    <div className={cn("flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-5", className)}>
-      <p className="text-foreground/80">
-        Rather talk it through? <span className="text-muted-foreground">15 minutes, Mondays and Wednesdays.</span>
+    <div className={cn("flex flex-col items-center gap-4", className)}>
+      <p className="text-center text-foreground/80">
+        Check your date first, or talk it through.{" "}
+        <span className="text-muted-foreground">Calls are 15 minutes, Mondays and Wednesdays.</span>
       </p>
-      <BookCallButton />
+      <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+        <AvailabilityButton />
+        <BookCallButton />
+      </div>
     </div>
   );
 }

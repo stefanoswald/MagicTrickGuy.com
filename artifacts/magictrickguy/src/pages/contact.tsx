@@ -1,6 +1,7 @@
 import { useDocumentTitle } from "@/hooks/use-document-title";
 import { BookingForm } from "@/components/shared/booking-form";
 import { BookCallButton } from "@/components/shared/book-call";
+import { AvailabilityButton } from "@/components/shared/availability";
 import { contact } from "@/data/content";
 import { Mail } from "lucide-react";
 
@@ -37,6 +38,14 @@ export default function Contact() {
               </p>
 
               <div className="mt-8 border border-border bg-card p-6">
+                <h2 className="mb-2 font-serif text-2xl text-foreground">Is your date open?</h2>
+                <p className="mb-5 text-muted-foreground">
+                  See my open dates, live from my calendar. Pick one and it goes straight into the form.
+                </p>
+                <AvailabilityButton />
+              </div>
+
+              <div className="mt-4 border border-border bg-card p-6">
                 <h2 className="mb-2 font-serif text-2xl text-foreground">Rather talk it through?</h2>
                 <p className="mb-5 text-muted-foreground">
                   Book a 15-minute call. I'm available Mondays and Wednesdays, 4–6 pm Eastern. Video or phone, your

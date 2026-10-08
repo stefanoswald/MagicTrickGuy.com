@@ -19,6 +19,7 @@ import About from "@/pages/about";
 import Testimonials from "@/pages/testimonials";
 import Videos from "@/pages/videos";
 import Contact from "@/pages/contact";
+import Pricing from "@/pages/pricing";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 
@@ -40,6 +41,7 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/testimonials" component={Testimonials} />
           <Route path="/videos" component={Videos} />
+          <Route path="/pricing" component={Pricing} />
           <Route path="/contact" component={Contact} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />

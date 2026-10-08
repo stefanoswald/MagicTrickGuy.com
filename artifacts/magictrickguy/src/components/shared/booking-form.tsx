@@ -19,9 +19,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { contact } from "@/data/content";
+import { AvailabilityButton } from "@/components/shared/availability";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -58,6 +59,27 @@ export function BookingForm() {
 
   const [submitting, setSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // A date picked on another page arrives as ?date=YYYY-MM-DD.
+  useEffect(() => {
+    const date = new URLSearchParams(window.location.search).get("date");
+    if (date && /^\d{4}-\d{2}-\d{2}$/.test(date)) form.setValue("date", date, { shouldDirty: true });
+  }, [form]);
+
+  // A date picked in the availability calendar lands in the Event Date field.
+  useEffect(() => {
+    const onPick = (e: Event) => {
+      const date = (e as CustomEvent<string>).detail;
+      if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
+      form.setValue("date", date, { shouldDirty: true });
+      const input = formRef.current?.querySelector<HTMLInputElement>('input[name="date"]');
+      input?.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(() => input?.focus({ preventScroll: true }), 450);
+    };
+    window.addEventListener("mtg:event-date", onPick);
+    return () => window.removeEventListener("mtg:event-date", onPick);
+  }, [form]);
 
   async function onSubmit(data: FormValues) {
     setSubmitting(true);
@@ -105,7 +127,7 @@ export function BookingForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form ref={formRef} onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         {/* Spam trap: hidden from people, bots tend to fill it in */}
         <input
           type="text"
@@ -166,6 +188,7 @@ export function BookingForm() {
                 <FormControl>
                   <Input type="date" className="bg-card/50 border-border rounded-none h-12" {...field} />
                 </FormControl>
+                <AvailabilityButton variant="link" label="Check my availability" />
                 <FormMessage />
               </FormItem>
             )}
@@ -234,7 +257,8 @@ export function BookingForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="rounded-none border-border">
-                    <SelectItem value="Under $5,000">Under $5,000</SelectItem>
+                    <SelectItem value="Under $2,500">Under $2,500</SelectItem>
+                    <SelectItem value="$2,500 - $5,000">$2,500 - $5,000</SelectItem>
                     <SelectItem value="$5,000 - $10,000">$5,000 - $10,000</SelectItem>
                     <SelectItem value="$10,000 - $15,000">$10,000 - $15,000</SelectItem>
                     <SelectItem value="$15,000+">$15,000+</SelectItem>

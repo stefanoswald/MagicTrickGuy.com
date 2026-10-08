@@ -4,6 +4,7 @@ import { photos } from "@/data/photos";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
 import { ProofStrip } from "@/components/shared/proof-strip";
 import { ClientMarquee } from "@/components/shared/client-marquee";
+import { InvestmentSection } from "@/components/shared/pricing";
 import {
   FaqSection,
   FeatureGrid,
@@ -98,6 +99,8 @@ export default function KeynoteMagic() {
           </div>
         </div>
       </section>
+
+      <InvestmentSection ids={["keynote"]} />
 
       <FaqSection items={pickFaqs(["message", "travel", "tech", "booking"])} />
 
